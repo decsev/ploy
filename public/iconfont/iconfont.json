@@ -1,0 +1,30 @@
+{
+  "id": "1860710",
+  "name": "ploy",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "策略工具",
+  "glyphs": [
+    {
+      "icon_id": "929946",
+      "name": "user",
+      "font_class": "-user",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "2137007",
+      "name": "股票-行情点击态",
+      "font_class": "-market",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "14061700",
+      "name": "trade_16_16",
+      "font_class": "-trade",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    }
+  ]
+}

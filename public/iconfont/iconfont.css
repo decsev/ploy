@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1591173269986'); /* IE9 */
+  src: url('iconfont.eot?t=1591173269986#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOoAAsAAAAAB9wAAANZAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqDHIJ4ATYCJAMQCwoABCAFhG0HQhvkBhHVm9HIfhy4sRN7xc/fqRWFz+fg+WzD3ieBpqErpg6r5ldTOe3g+841dWRUhBrJPb/z6Au/OExzFAA+z+X4rrIE5rcsl7E27c1HvQDjgAIdc5IVSAlyy+HMq/DoWg8BLOnJi1StXrcpBg3pJoD07dWjEyZlQdeUCgbBKxmrkfm4GGeGcxmY539ePlFYDDi4CrJRw+7VulLxbY/3E1UQBbRVAcF4LkCcBArIC2iQnqWezqgwnheF1X+jKQ4YDA687fF20vuJUQSyvWgM/csDhYOAeJDiOACK4oSCtz1sSaydBHw48H6i7AbW0gAYwAMmw1bCTMt9HASVOTZ3XKLEY4LbNm7mXQk33Tt06Nwlf1a2UlvuzLqXo8y2aK8LZw4cuLOhdXB75t3w3qw7Y6wKdya3i7cndazLE9nN6DzL2pnbU95/5uJgiZ9g1rJwaZ/bt5veudPs3r0Wd+92bbFs25YVSSvGm7UkWGzjtq7s1HTxzKVhiipxS13XshTxyitLZWxXtXGDar+rOf2rpi/lV075ZvjSzF7anePrpKzLKsfvTOtlXjr8TcrCzFJHn7WeEBwFzRF3HoqfL5DkbcJm38PvzRK8zbYuUXPC/ZsnWpc9d6JmCcOEzcidxKxMuMI8MjsS7iSKNqr799VGKsQiRxE/onmK5p1GNEygR94S/1vyb34Frg460bzjyBRRsvDKWf80+dP12TV3MxCA6IJapEoAqMD55+vV//sOg1fcTd0hQdk/xtcAPPwfLgF/dEHTT/ITpK2lf0vaskobcmLVWlPYErNQUwAFN1+KxQL/KA2JeTqGLxnELsFIUoBDDOmgMGQlNCMvXHyKwsNQAZY81Jjsk4TBKETHArmZgiAkZB8c4nMOioRcITTjCVyS8wUeCUXB0lySzOmT3Zd4qcJQAkv6T9Gsi2N2uQSlN/j3pDgp91kvcIkh6uo2m7piAY8xoHx8L+LI8TrTiDbDNK208ZpgpA4i29A0ruxFtVnn6kIVhhJYQv+JaNbFufXlknv/Df49Ka6h1AVf4BKbJzpq2hbEVbO0olzLJeXje0Qc4XidiRG5MNH4SmzlrRKM1IQe0W2gwbVcW009v25+wg2AhRyvxRElWlzcfO8CPuabFWfIIZ+wsqgqAAAA') format('woff2'),
+  url('iconfont.woff?t=1591173269986') format('woff'),
+  url('iconfont.ttf?t=1591173269986') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1591173269986#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before {
+  content: "\e882";
+}
+
+.icon-market:before {
+  content: "\e683";
+}
+
+.icon-trade:before {
+  content: "\e667";
+}
+
