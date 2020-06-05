@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-03 18:22:50
+ * @LastEditTime: 2020-06-05 16:23:14
  */ 
 // https://umijs.org/config/
 import path from 'path';
@@ -16,6 +16,7 @@ export default {
       {
         antd: true,
         dva: true,
+        fastClick: true,
         dynamicImport: {
           loadingComponent: './components/PageLoading/index',
           webpackChunkName: true
@@ -32,6 +33,7 @@ export default {
       }
     ]
   ],
+  disableCSSModules: true,
   // 路由配置
   routes: pageRoutes,
   // Theme for antd-mobile

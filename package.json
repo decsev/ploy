@@ -11,6 +11,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@react-hero/form": "^0.1.0",
     "antd": "^3.19.5",
     "better-scroll": "^1.15.2",
     "cross-env": "^7.0.2",

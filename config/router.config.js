@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-03 15:58:58
+ * @LastEditTime: 2020-06-04 18:10:37
  */ 
 export default [
   {
@@ -10,6 +10,7 @@ export default [
     routes: [
       {path: '/', component: './index/index', title: '行情'},
       {path: '/trade', component: './trade/index', title: '交易'},
+      {path: '/test', component: './test/index', title: '测试'},
       {
         path: '/user',
         component: '../layouts/UserLayout',

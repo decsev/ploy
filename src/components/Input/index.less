@@ -1,0 +1,60 @@
+@form-control-bg: #fff; 
+@app-txt-color-gray: #333;
+@app-txt-color-danger: red;
+@app-primary: #000;
+@app-txt-color: #000;
+.form-control{
+  width: 100%;
+  display: block;
+  font-size: 24px;
+  background-color: @form-control-bg;
+  color: @app-txt-color-gray;
+  height: 40px;
+  line-height: 40px;
+  padding:0px 20px;
+  position: relative;
+  .input {
+    display: inline-block;
+    font-size: 24px;
+    color: #565D66;
+    &.disabled {
+      color: @app-txt-color;
+      position: absolute;
+      right: 1px;
+      font-size: 14px;
+    }
+    &.normal {
+      display: block;
+      position: relative;
+    }
+    .cursor {
+      position: absolute;
+      display: inline-block;
+      top: 5px;
+      width: 1px;
+      background-color: @app-primary;
+      height: 30px;
+      animation: cursorbling 1.3s infinite;
+    }
+    .placeholder {
+      font-size: 24px;
+      color: @app-txt-color-gray;
+    }
+  }
+}
+@keyframes cursorbling {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes cursorbling {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+ }

@@ -1,25 +1,23 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-03 12:30:23
+ * @LastEditTime: 2020-06-05 17:19:07
  */ 
 import React, {PureComponent} from 'react';
 import {Button, Toast} from 'antd-mobile';
+import {Input, Inputx} from 'components';
 
-class Test extends PureComponent {
+class Test extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    }
+  }
   componentDidMount() {}
-
-  showToast = () => {
-    Toast.info('This is a toast tips !!!', 10);
-  };
-
   render() {
-    const {route} = this.props;
     return (
       <div>
-        <Button type="primary" onClick={this.showToast}>
-          {route.title}
-        </Button>
       </div>
     );
   }
