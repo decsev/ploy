@@ -1,7 +1,7 @@
 // {
 //   "extends": "eslint-config-umi"
 // }
-{
+module.exports = {
   "extends": [
     "eslint:recommended",
   ],
@@ -17,9 +17,8 @@
     }
   },
   "globals": {
-    "phixSit": true, // 全局变量
-    "HOST": true,
-    "localforage": true
+    "ENV": true, // 全局变量
+    "log": true
   },
   "env": {
     "es6": true,
@@ -64,7 +63,7 @@
     "no-unexpected-multiline": 2,             //行尾缺少分号可能导致一些意外情况
     "no-sparse-arrays": 2,                    //数组中多出逗号
     "no-shadow-restricted-names": 2,          //关键词与命名冲突
-    "no-undef": 2,                            //变量未定义
+    "no-undef": 1,                            //变量未定义
     "no-unused-vars": 0,                      //变量定义后未使用
     "no-cond-assign": 2,                      //条件语句中禁止赋值操作
     "no-native-reassign": 2,                  //禁止覆盖原生对象
@@ -75,7 +74,7 @@
     "no-multi-spaces": 2,                     //不允许多个空格
     "key-spacing": [1, { "beforeColon": false, "afterColon": true }], //object直接量建议写法 : 后一个空格签名不留空格
     "block-scoped-var": 2,                    //变量定义后未使用
-    "consistent-return": 1,                   //函数返回值可能是不同类型
+    "consistent-return": 0,                   //函数返回值可能是不同类型
     "accessor-pairs": 2,                      //object getter/setter方法需要成对出现
     "dot-location": [2, "property"],          //换行调用对象方法  点操作符应写在行首
     "no-lone-blocks": 2,                      //多余的{}嵌套

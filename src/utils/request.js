@@ -6,9 +6,7 @@ import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import {message} from 'antd'
 import {YQL, CORS} from './config'
-
 axios.defaults.timeout = 11000;
-
 const fetch = (options) => {
   let {
     method = 'get',
@@ -18,8 +16,11 @@ const fetch = (options) => {
     headers = {}
   } = options
 
-  let cloneData = lodash.cloneDeep(data)
-  if (phixSit === 'dev' || !phixSit) {
+  let cloneData = lodash.cloneDeep(data);
+
+  /*global someFunction ENV:true*/
+  /*eslint no-undef: "error"*/
+  if (ENV === 'dev') {
     // 测试环境
     if (typeof cloneData === 'string') {
       cloneData = qs.parse(cloneData);
@@ -28,6 +29,10 @@ const fetch = (options) => {
     } else {
       cloneData.dev = 1;
     }
+  }
+  if (typeof cloneData === 'string') {
+    cloneData = qs.parse(cloneData);
+    cloneData = qs.stringify(cloneData);
   }
   try {
     let domin = ''

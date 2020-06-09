@@ -1,14 +1,17 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-03 19:44:21
+ * @LastEditTime: 2020-06-08 17:57:11
  */
 :global {
+  .layout{
+    overflow-x: hidden;
+  }
   #nprogress {
     pointer-events: none;
 
     .bar {
-      background: #359ffb;
+      background: #11acfa;
       position: fixed;
       z-index: 1024;
       top: 0;
@@ -41,10 +44,9 @@
       height: 18px;
       box-sizing: border-box;
       border: solid 2px transparent;
-      border-top-color: #359ffb;
-      border-left-color: #359ffb;
+      border-top-color: #11acfa;
+      border-left-color: #11acfa;
       border-radius: 50%;
-
       :local {
         animation: nprogress-spinner 400ms linear infinite;
       }

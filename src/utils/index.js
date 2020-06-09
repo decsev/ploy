@@ -3,10 +3,13 @@ import classnames from 'classnames'
 import lodash from 'lodash'
 import config from './config'
 import request from './request'
-import {color} from './theme'
 import {message} from 'antd';
 window.localforage = require('localforage');
-
+window.log = (...args) => {
+  if (!!window.showLog || window.location.hostname === 'localhost') {
+    console.log(...args)
+  }
+}
 
 /**
  * 加法运算，避免数据相加小数点后产生多位数和计算精度损失。
@@ -246,7 +249,7 @@ const changeTitle = (title) => {
 }
 
 const setItem = (key, value, callback) => {
-  localforage.setItem(key, value).then(function(val) {
+  window.localforage.setItem(key, value).then(function(val) {
     if (typeof callback === 'function') {
       callback(val);
     }
@@ -256,7 +259,7 @@ const setItem = (key, value, callback) => {
 }
 
 const getItem = (key, callback) => {
-  localforage.getItem(key).then(function(val) {
+  window.localforage.getItem(key).then(function(val) {
     if (typeof callback === 'function') {
       callback(val);
     }
@@ -266,7 +269,7 @@ const getItem = (key, callback) => {
 }
 
 const removeItem = (key, callback) => {
-  localforage.removeItem(key).then(function(val) {
+  window.localforage.removeItem(key).then(function(val) {
     if (typeof callback === 'function') {
       callback(val);
     }
@@ -591,7 +594,6 @@ const wanNum = (v, fixedNum = 2, wanFixedNum = 2, ltone = 4) => {
 module.exports = {
   config,
   request,
-  color,
   classnames,
   queryURL,
   queryArray,

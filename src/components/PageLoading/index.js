@@ -1,15 +1,13 @@
 /*
- * @Author: Jan-superman 
- * @Date: 2018-09-27 20:37:59 
- * @Last Modified by: superman
- * @Last Modified time: 2018-12-24 23:32:29
- */
+ * @Date: 2020-06-02 17:52:41
+ * @LastEditors: lianggua
+ * @LastEditTime: 2020-06-08 18:02:45
+ */ 
 
 import React from 'react';
-import {ActivityIndicator} from 'antd-mobile';
-
+import styles from './index.less';
 export default () => 
-  <div style={{display: 'flex', justifyContent: 'center', paddingTop: '20px'}}>
-    <ActivityIndicator text="正在加载" style={{margin: '0 auto'}} />
+  <div className={styles.pageLoading}>
+    加载中...
   </div>
 ;

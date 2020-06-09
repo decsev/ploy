@@ -1,0 +1,83 @@
+.selectxWp{
+    height: 130px;
+    .selectxBody{
+        height: 80px;
+        padding: 20px 0;
+        background: #191a1c;
+        display: flex;
+        border-radius: 2px;
+        .selectxLabel{
+            width: 180px;
+            color: #c4c6cc;
+            padding: 0 25px;
+            font-size: 24px;
+            line-height: 40px;
+        }
+        .selectxMain {
+            flex-grow: 1;
+            height: 40px;
+            line-height: 30px;
+            padding: 5px 50px 5px 5px;
+            font-size: 24px;
+            color: #eaeaea;
+            background: transparent;
+            position: relative;
+            .placeholder{
+                color: #797979;
+            }
+            .pickerIcon{
+                position: absolute;
+                right: 25px;
+                top: 5px;
+                line-height: 30px;
+                color: #636468;
+                :global(.iconfont){
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+    .selectxFooter{
+        padding: 0 25px;
+        font-size: 18px;
+        line-height: 30px;
+        &.error{
+            color: #a9493e;
+        }
+    }
+}
+
+.selectxWp_line{
+    height: 100px;
+    border-bottom: 1px solid #4c5259;
+    margin-bottom: 30px;
+    .selectxLabel{
+        padding-top: 10px;
+        line-height: 30px;
+        padding-bottom: 10px;
+        color: #525662;
+    }
+    .selectxMain {
+        width: 100%;
+        height: 40px;
+        line-height: 30px;
+        padding: 5px 50px 5px 5px;
+        font-size: 24px;
+        color: #eaeaea;
+        background: transparent;
+        position: relative;
+        .placeholder{
+            color: #797979;
+        }
+        .pickerIcon{
+            position: absolute;
+            right: 25px;
+            top: 5px;
+            line-height: 30px;
+            color: #636468;
+            :global(.iconfont){
+                font-size: 22px;
+            }
+        }
+    }
+}

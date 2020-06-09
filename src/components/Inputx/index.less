@@ -1,0 +1,137 @@
+.inputxWp{
+    height: 130px;
+    .inputxBody{
+        height: 80px;
+        padding: 20px 0;
+        background: #191a1c;
+        display: flex;
+        border-radius: 2px;
+        .inputxLabel{
+            width: 180px;
+            color: #c4c6cc;
+            padding: 0 25px;
+            font-size: 24px;
+            line-height: 40px;
+        }
+        .inputxInput{
+            flex-grow: 1;
+            position: relative;
+            .formInput{
+                height: 40px;
+                line-height: 30px;
+                padding: 5px 50px 5px 5px;
+                width: 100%;
+                font-size: 24px;
+                color: #eaeaea;
+                background: transparent;
+                border: none;
+            }
+            .clear{
+                position: absolute;
+                right: 0px;
+                top: 5px;
+                right: 15px;
+                line-height: 30px;
+                color: #636468;
+                font-size: 28px;
+                :global(.iconfont){
+                    font-size: 28px;
+                }
+            }
+        }
+        .inputxTail{
+            width: 100px;
+            position: relative;
+            font-size: 24px;
+            line-height: 40px;
+            color: #525662;
+            padding-left: 15px;
+            &::before{
+                content:'';
+                height: 30px;
+                border-left: 2px solid #525662;
+                position: absolute;
+                top: 5px;
+                left: 0px;
+            }
+        }
+    }
+    .inputxFooter{
+        padding: 0 25px;
+        font-size: 18px;
+        line-height: 30px;
+        color: #636468;
+        &.focus{
+            color: #636468;
+        }
+        &.error{
+            color: #a9493e;
+        }
+    }
+}
+
+.inputxWp_line{
+    height: 100px;
+    border-bottom: 1px solid #4c5259;
+    margin-bottom: 30px;
+    .inputxLabel{
+        padding-top: 10px;
+        line-height: 30px;
+        padding-bottom: 10px;
+        color: #525662;
+        &.error{
+            color: #a9493e;
+        }
+    }
+    .inputxBody{
+        height: 80px;
+        padding: 0;
+        display: flex;
+        height: 40px;
+        .inputxInput{
+            flex-grow: 1;
+            position: relative;
+            .formInput{
+                height: 40px;
+                line-height: 30px;
+                padding: 5px 0;
+                width: 100%;
+                font-size: 24px;
+                color: #eaeaea;
+                background: transparent;
+                border: none;
+            }
+            .clear{
+                position: absolute;
+                right: 0px;
+                top: 5px;
+                right: 15px;
+                line-height: 30px;
+                color: #636468;
+                font-size: 28px;
+                :global(.iconfont){
+                    font-size: 28px;
+                }
+            }
+        }
+        .inputxTail{
+            width: 100px;
+            position: relative;
+            font-size: 24px;
+            line-height: 40px;
+            color: #525662;
+            padding-left: 15px;
+            &::before{
+                content:'';
+                height: 30px;
+                border-left: 2px solid #525662;
+                position: absolute;
+                top: 5px;
+                left: 0px;
+            }
+        }
+    }
+    .inputxTail{
+
+    }
+}

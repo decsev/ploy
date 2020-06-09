@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-03 15:56:15
+ * @LastEditTime: 2020-06-08 16:39:13
  */
 
 import React, {PureComponent} from 'react';
@@ -40,7 +40,7 @@ class UserLayout extends PureComponent {
     }
 
     return (
-      <div style={{overflowX: 'hidden'}}>
+      <div className="layout">
         <MenuBar pathname={location.pathname}>{children}</MenuBar>
       </div>
     );

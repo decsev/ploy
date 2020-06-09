@@ -1,0 +1,41 @@
+.navBar{
+    background: #212425;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    line-height: 100px;
+    align-items: center;
+    font-size: 26px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 1px 10px #000;
+    .left, .title, .right{
+        flex: 1;
+        display: flex;
+        height: 100px;
+        align-items: center;
+    }
+    .left{
+        padding-left: 25px;
+        .backIcon{
+            margin-right: 10px;
+            :global(.iconfont) {
+                font-size: 28px;
+            }
+        }
+    }
+    .title{
+        flex: 1;
+        justify-content: center;
+        white-space: nowrap;
+    }
+    .right{
+        padding-right: 25px;
+        justify-content: flex-end;
+        :global(.iconfont) {
+            font-size: 28px;
+        }
+    }
+}

@@ -2,10 +2,10 @@
  * 模拟输入框
  * @Date: 2020-06-05 11:22:32
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-05 16:04:12
+ * @LastEditTime: 2020-06-08 16:55:21
  */ 
 import React, {Component} from 'react';
-import './index.less';
+import styles from './index.less';
 
 class Input extends Component {
   constructor(props) {
@@ -37,20 +37,20 @@ class Input extends Component {
     let placehodler = null;
     if (!data.disabled) {
       if (data.active) {
-        cursor = <span className="cursor" />;
+        cursor = <span className={styles.cursor} />;
       }
       if (!!data.placeholder && !data.value) {
-        placehodler = <span className="placeholder">{data.placeholder}</span>;
+        placehodler = <span className={styles.placeholder}>{data.placeholder}</span>;
       }
     }
 
     return (
-      <div className="form-control" onClick={() => {
+      <div className={styles.formControl} onClick={() => {
         if (!data.disabled) {
           this.handleFocus();
         }
       }}>
-        <p className={`input ${data.disabled ? 'disabled' : 'normal'} ${placehodler ? 'placehodler' : ''}`}>
+        <p className={`${styles.input} ${data.disabled ? styles.disabled : styles.normal} ${placehodler ? styles.placehodler : null}`}>
           {data.value}
           {cursor}
           {placehodler}

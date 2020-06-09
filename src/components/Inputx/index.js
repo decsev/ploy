@@ -1,11 +1,11 @@
 /*
  * @Date: 2020-06-05 16:16:37
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-05 17:14:27
+ * @LastEditTime: 2020-06-09 20:14:05
  */ 
 import React, {Component} from 'react';
 import {Input, BizIcon} from '../';
-import './index.less';
+import styles from './index.less';
 
 class index extends React.Component {
   constructor(props) {
@@ -15,6 +15,9 @@ class index extends React.Component {
       focus: false,
       errorTip: ''
     };
+    this.submitParams = {
+      Name: ''
+    }
     this.handleMockInputFocus = this.handleMockInputFocus.bind(this);
     this.handleMockInputBlur = this.handleMockInputBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -93,7 +96,7 @@ class index extends React.Component {
     });
   }
   render() {
-    const {mockInput, inputTip, placeholder, tail} = this.props;
+    const {mockInput, label, placeholder, tail, inputTip, theme} = this.props;
     const {value, focus, errorTip} = this.state;
     const inputData = {
       disabled: this.props.disabled,
@@ -103,11 +106,42 @@ class index extends React.Component {
       type: 'number',
       noLabel: true
     };
+    if (theme === 'line') {
+      return (
+        <div className={styles.inputxWp_line}>
+          <div className={`${styles.inputxLabel} ${focus ? styles.focus : errorTip ? styles.error : null}`}>{focus || !errorTip ? label : errorTip ? errorTip : inputTip}</div>  
+          <div className={styles.inputxBody}>
+            <div className={styles.inputxInput}>
+              {
+                mockInput
+                  ?
+                  <div>
+                    <Input
+                      data={inputData}
+                      handleInputFocus={this.handleMockInputFocus}
+                      handleInputDelete={this.handleInputDelete}
+                      defaultFocus={false}
+                    />
+                  </div>
+                  : <input className={`${styles.formInput} ${styles.originInput}`} maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
+              }
+              {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+                <BizIcon type="clear"></BizIcon>
+              </span>}
+            </div>
+            {tail && <div className={styles.inputxTail}> 
+              {tail}
+            </div>}
+          </div>
+          {/* <div className={`${styles.inputxFooter} ${focus ? styles.focus : errorTip ? styles.error : null}`} >{!focus && errorTip ? errorTip : inputTip}</div> */}
+        </div>
+      );
+    }
     return (
-      <div className="input-com">
-        <div>
-          <div className="form-label">{inputTip}</div>  
-          <div className="form-label-input">
+      <div className={styles.inputxWp}>
+        <div className={styles.inputxBody}>
+          <div className={styles.inputxLabel}>{label}</div>  
+          <div className={styles.inputxInput}>
             {
               mockInput
                 ?
@@ -119,17 +153,17 @@ class index extends React.Component {
                     defaultFocus={false}
                   />
                 </div>
-                : <input className="form-input origin-input" maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
+                : <input className={`${styles.formInput} ${styles.originInput}`} maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
             }
-            <span className="icon-clear" onClick={this.clearInput}>
-              <BizIcon type="user"></BizIcon>
-            </span>
+            {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+              <BizIcon type="clear"></BizIcon>
+            </span>}
           </div>
-          <div className="form-tail">
-            {tail ? <span>{tail}</span> : null}
-          </div>
+          {tail && <div className={styles.inputxTail}> 
+            {tail}
+          </div>}
         </div>
-        <div className={`form-tip ${value ? 'show' : ''} ${focus ? ' focus' : errorTip ? ' error' : ''}`} >{!focus && errorTip ? errorTip : inputTip}</div>
+        <div className={`${styles.inputxFooter} ${focus ? styles.focus : errorTip ? styles.error : null}`} >{!focus && errorTip ? errorTip : inputTip}</div>
       </div>
     );
   }

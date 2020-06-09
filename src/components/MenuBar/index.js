@@ -37,7 +37,7 @@ class MenuBar extends PureComponent {
   render() {
     const {isMenubar, children, pathname} = this.props;
     return (
-      <TabBar hidden={isMenubar} tintColor={theme.primaryColor} barTintColor="#000" unselectedTintColor="#ccc">
+      <TabBar hidden={isMenubar} tintColor={theme.primaryColor} barTintColor="#f1f1f1" unselectedTintColor="#909090">
         {tabBarData.map(({title, icon, selectedIcon, link}) => 
           <TabBar.Item
             key={link}

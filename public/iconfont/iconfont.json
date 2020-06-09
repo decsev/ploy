@@ -6,6 +6,48 @@
   "description": "策略工具",
   "glyphs": [
     {
+      "icon_id": "2010830",
+      "name": "修改密码",
+      "font_class": "-pw",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "6129331",
+      "name": "284用户资料、个人信息、个人资料-线性",
+      "font_class": "-userInfo",
+      "unicode": "e7ea",
+      "unicode_decimal": 59370
+    },
+    {
+      "icon_id": "10043592",
+      "name": "关于",
+      "font_class": "-about",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "10148677",
+      "name": "接口管理",
+      "font_class": "-api",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "4503668",
+      "name": "down",
+      "font_class": "-down",
+      "unicode": "e6c3",
+      "unicode_decimal": 59075
+    },
+    {
+      "icon_id": "141569",
+      "name": "clear",
+      "font_class": "-clear",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
       "icon_id": "929946",
       "name": "user",
       "font_class": "-user",

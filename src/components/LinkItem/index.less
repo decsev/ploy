@@ -1,0 +1,48 @@
+.linkItem{
+    display: flex;
+    line-height: 100px;
+    background: #212425;
+    color: #96989c;
+    .iconContainer{
+        width: 100px;
+        padding: 0 25px;
+        text-align: center;
+        color: #d5d5d5;
+        :global(.iconfont) {
+            font-size: 32px;
+        }
+    }
+    .content{
+        flex-grow: 1;
+        position: relative;
+        .title{
+            font-size: 24px;
+        }
+        .rightIcon{
+            position: absolute;
+            right: 25px;
+            top: 0px;
+            color: #6e7381;
+            :global(.iconfont) {
+                font-size: 28px;
+            }
+        }
+        &:after{
+            content: '';
+            width: 100%;
+            height: 0px;
+            border-bottom: 1px solid #525252;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+        }
+    }
+    &.noSplitLine{
+        margin-bottom: 15px;
+        .content {
+            &:after{
+                display: none;
+            } 
+        }
+    }
+}

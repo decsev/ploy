@@ -1,10 +1,8 @@
 /*
- * @Author: Jan-superman 
- * @Date: 2018-10-11 20:32:31 
- * @Last Modified by:   Jan-superman 
- * @Last Modified time: 2018-10-11 20:32:31 
- */
-
+ * @Date: 2020-06-02 17:52:41
+ * @LastEditors: lianggua
+ * @LastEditTime: 2020-06-06 15:30:36
+ */ 
 import React from 'react';
 
 const BizIcon = props => {
