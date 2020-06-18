@@ -25,17 +25,43 @@
                 color: #eaeaea;
                 background: transparent;
                 border: none;
+                &.password{
+                    padding-right: 120px;
+                }
+            }
+            .tailCtr{
+                position: absolute;
+                right: 15px;
+                top: 5px;
+                display: flex;
+                justify-content: flex-end;
+                .clear, .eye {
+                    flex: 1;
+                }
             }
             .clear{
-                position: absolute;
-                right: 0px;
-                top: 5px;
-                right: 15px;
+                // position: absolute;
+                // right: 0px;
+                // top: 5px;
+                // right: 15px;
+                margin-left: 20px;
                 line-height: 30px;
                 color: #636468;
                 font-size: 28px;
                 :global(.iconfont){
                     font-size: 28px;
+                }
+            }
+            .eye{
+                // position: absolute;
+                // top: 5px;
+                // right: 80px;
+                margin-left: 20px;
+                line-height: 30px;
+                color: #636468;
+                font-size: 28px;
+                :global(.iconfont){
+                    font-size: 32px;
                 }
             }
         }
@@ -78,6 +104,7 @@
         padding-top: 10px;
         line-height: 30px;
         padding-bottom: 10px;
+        height: 50px;
         color: #525662;
         &.error{
             color: #a9493e;
@@ -100,9 +127,107 @@
                 color: #eaeaea;
                 background: transparent;
                 border: none;
+                &.password{
+                    padding-right: 160px;
+                }
+            }
+            .tailCtr{
+                position: absolute;
+                right: 0px;
+                top: 5px;
+                display: flex;
+                justify-content: flex-end;
+                .clear, .eye {
+                    flex: 1;
+                }
+            }
+            .clear{
+                // position: absolute;
+                // right: 0px;
+                // top: 5px;
+                // right: 15px;
+                margin-left: 20px;
+                line-height: 30px;
+                color: #636468;
+                font-size: 28px;
+                :global(.iconfont){
+                    font-size: 28px;
+                }
+            }
+            .eye{
+                // position: absolute;
+                // top: 5px;
+                // right: 80px;
+                margin-left: 20px;
+                line-height: 30px;
+                color: #636468;
+                font-size: 28px;
+                :global(.iconfont){
+                    font-size: 32px;
+                }
+            }
+        }
+        .inputxTail{
+            width: 100px;
+            position: relative;
+            font-size: 24px;
+            line-height: 40px;
+            color: #525662;
+            padding-left: 15px;
+            &::before{
+                content:'';
+                height: 30px;
+                border-left: 2px solid #525662;
+                position: absolute;
+                top: 5px;
+                left: 0px;
+            }
+        }
+    }
+    .inputxTail{
+
+    }
+}
+
+
+.inputxWp_bar{
+    height: 100px;
+    margin-bottom: 2px;
+    background: #1e2326;
+    .inputxBody{
+        height: 80px;
+        padding: 30px 0;
+        display: flex;
+        border-radius: 2px;
+        &.error{
+            .formInput{
+                color: red;
+            }
+        }
+        .inputxLabel{
+            width: 180px;
+            color: #c4c6cc;
+            padding: 0 25px;
+            font-size: 24px;
+            line-height: 40px;
+        }
+        .inputxInput{
+            flex-grow: 1;
+            position: relative;
+            .formInput{
+                height: 40px;
+                line-height: 30px;
+                padding: 5px 25px 5px 5px;
+                width: 100%;
+                font-size: 24px;
+                color: #eaeaea;
+                background: transparent;
+                border: none;
+                text-align: right;
             }
             .clear{
                 position: absolute;
+                display: none;
                 right: 0px;
                 top: 5px;
                 right: 15px;
@@ -130,8 +255,5 @@
                 left: 0px;
             }
         }
-    }
-    .inputxTail{
-
     }
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-08 16:37:45
+ * @LastEditTime: 2020-06-18 11:28:04
  */
 
 import React, {PureComponent} from 'react';
@@ -15,8 +15,8 @@ NProgress.configure({showSpinner: false});
 
 // 底部有bar菜单
 const BarRoutes = [
-  '/trade', 
-  '/', 
+  '/strategy', 
+  '/market', 
   '/user'
 ];
 let currHref = '';

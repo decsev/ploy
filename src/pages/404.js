@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 17:27:00
+ * @LastEditTime: 2020-06-18 18:24:30
  */ 
 import React from 'react';
 import Router from 'umi/router';
@@ -14,10 +14,10 @@ export default () => <div style={{paddingTop: '200px'}}>
     title="找不到该页面了"
   >
     <React.Fragment>
-      <Button type="ghost" size="small" inline onClick={() => {
+      <Button type="ghost" inline onClick={() => {
         Router.replace('/');
       }}>首页</Button>
-      <Button style={{marginLeft: '30px'}} type="ghost" size="small" inline onClick={() => {
+      <Button style={{marginLeft: '30px'}} type="ghost" inline onClick={() => {
         Router.goBack();
       }}>返回</Button>
     </React.Fragment>

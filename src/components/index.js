@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-05 11:03:37
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 16:34:59
+ * @LastEditTime: 2020-06-18 17:26:08
  */ 
 import BizIcon from './BizIcon';
 import MenuBar from './MenuBar';
@@ -13,6 +13,8 @@ import Selectx from './Selectx';
 import LinkItem from './LinkItem';
 import NavBar from './NavBar';
 import Empty from './Empty';
+import GetCode from './GetCode';
+import Tv from './Tv';
 
 export {
   BizIcon,
@@ -24,5 +26,7 @@ export {
   Selectx,
   LinkItem,
   NavBar,
-  Empty
+  Empty,
+  GetCode,
+  Tv
 }

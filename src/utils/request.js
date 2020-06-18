@@ -107,9 +107,12 @@ export default function request(options) {
 
   return fetch(options).then((response) => {
     if (response.data.code === 9) {
-      window.eventHandler.emit('SHOWLOGINMODAL');
-      // window.location.href = '/home/index/login';
-      // return;
+      localStorage.removeItem('_t');
+      localStorage.removeItem('_n');
+      localStorage.removeItem('vip');
+      localStorage.removeItem('level');
+      localStorage.removeItem('phone');
+      window.location.href = '/login';
     }
     const {statusText, status} = response
     let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data

@@ -17,13 +17,13 @@ const tabBarData = [
     title: '行情',
     icon: 'market',
     selectedIcon: 'market',
-    link: '/'
+    link: '/market'
   },
   {
     title: '交易',
     icon: 'trade',
     selectedIcon: 'trade',
-    link: '/trade'
+    link: '/strategy'
   },
   {
     title: '我的',
@@ -37,7 +37,7 @@ class MenuBar extends PureComponent {
   render() {
     const {isMenubar, children, pathname} = this.props;
     return (
-      <TabBar hidden={isMenubar} tintColor={theme.primaryColor} barTintColor="#f1f1f1" unselectedTintColor="#909090">
+      <TabBar hidden={isMenubar} tintColor={theme.primaryColor} barTintColor="#262b2f" unselectedTintColor="#909090">
         {tabBarData.map(({title, icon, selectedIcon, link}) => 
           <TabBar.Item
             key={link}

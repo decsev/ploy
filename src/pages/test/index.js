@@ -25,7 +25,7 @@ class index extends PureComponent {
     return (
       <React.Fragment>
         <NavBar
-          icon="left"
+          icon="back"
           leftContent={null}
           rightContent={<div onClick={this.jumpToApiLink}><BizIcon type="plus"></BizIcon></div>}
         >{title}</NavBar>

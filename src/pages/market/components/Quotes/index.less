@@ -1,0 +1,107 @@
+dl.quotesContainer {
+  padding: 0;
+  dt {
+    width: 100%;
+    color: #868686;
+    padding: 0 25px;
+    line-height: 50px;
+    text-align: left;
+    .title{
+      :global(.iconfont) {
+        font-size: 28px;
+      }
+      .symbol{
+        margin-left: 10px;
+        font-size: 28px;
+        display: none;
+      }
+    }
+    // span {
+    //   width: 115px;
+    //   height: 50px;
+    //   line-height: 50px;
+    //   border-top-right-radius: 25px;
+    //   border-bottom-right-radius: 25px;
+    //   background: #f7f7f9;
+    //   display: inline-block;
+    //   font-size: 22px;
+    //   text-align: left;
+    //   padding-left: 30px;
+    //   font-weight: bold;
+    //   color: #108ee9;
+    // }
+
+    // i {
+    //   position: absolute;
+    //   right: 0;
+    //   padding-right: 30px;
+    //   line-height: 50px;
+    //   color: #ccc;
+    //   font-size: 20px;
+    // }
+  }
+
+  dd {
+    margin: 0;
+    display: flex;
+    height: 110px;
+    padding: 20px 25px;
+    color: #d3d4d9;
+    border-bottom: 1px solid #333333;
+    & > div {
+      &:first-child {
+        width: 250px;
+        line-height: 1;
+        p {
+          margin: 0;
+          font-size: 20px;
+          line-height: 35px;
+          &:first-child {
+            font-size: 24px;
+          }
+          &:nth-child(2) {
+            color: #5b5f6a;
+          }
+        }
+      }
+
+      &:nth-child(2) {
+        flex-grow: 1;
+        p {
+          margin: 0;
+          font-size: 20px;
+          color: #c2c9d1;
+          line-height: 35px;
+          &:first-child {
+            font-size: 30px;
+          }
+          &:nth-child(2) {
+            color: #5b5f6a;
+          }
+        }
+      }
+
+      &:last-child {
+        width: 165px;
+        text-align: center;
+
+        .price {
+          display: block;
+          height: 50px;
+          line-height: 50px;
+          color: #fff;
+          font-size: 26px;
+          margin: 10px 0 0;
+          border-radius: 5px;
+          &.up,
+          &.eq {
+            background: #3a9555;
+          }
+          &.down {
+            background: #bf504f;
+          }
+        }
+      }
+    }
+  }
+}

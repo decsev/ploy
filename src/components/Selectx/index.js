@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-08 10:13:46
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 20:22:33
+ * @LastEditTime: 2020-06-10 16:49:56
  */ 
 import React, {PureComponent, Component} from 'react';
 import {Picker} from 'antd-mobile';
@@ -15,7 +15,7 @@ class index extends Component {
       value: this.props.defaultValue || ''
     };
     this.handleOk = this.handleOk.bind(this);
-
+    this.clearInput = this.clearInput.bind(this);
   }
   handleOk(e) {
     console.log('e111', e);
@@ -25,6 +25,12 @@ class index extends Component {
       })
       this.props.validInput(e[0], this.props.id)
     }
+  }
+  clearInput() {
+    this.setState({
+      value: ''
+    });
+    this.props.validInput('', this.props.id)
   }
   render() {
     const {label, disabled, placeholder, theme} = this.props;
@@ -41,7 +47,7 @@ class index extends Component {
       return (
         <div className={styles.selectxWp_line}>
           <div className={styles.selectxLabel}>
-            {label}
+            {value && <React.Fragment>{label}</React.Fragment>}
           </div>
           <div className={styles.selectxMain}>
             <Picker
@@ -55,6 +61,9 @@ class index extends Component {
             >
               <SelectxChildren></SelectxChildren>
             </Picker>
+            {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+              <BizIcon type="clear"></BizIcon>
+            </span>}
           </div>
         </div>
       );
@@ -77,8 +86,10 @@ class index extends Component {
             >
               <SelectxChildren></SelectxChildren>
             </Picker>
+            {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+              <BizIcon type="clear"></BizIcon>
+            </span>}
           </div>
-          
         </div>
       </div>
     );

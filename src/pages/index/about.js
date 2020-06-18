@@ -17,7 +17,7 @@ class about extends PureComponent {
     return (
       <React.Fragment>
         <NavBar
-          icon="left"
+          icon="back"
           onLeftClick={() => {
             Router.goBack();       
           }}

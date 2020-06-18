@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-05 16:16:37
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 20:14:05
+ * @LastEditTime: 2020-06-15 18:38:48
  */ 
 import React, {Component} from 'react';
 import {Input, BizIcon} from '../';
@@ -13,7 +13,8 @@ class index extends React.Component {
     this.state = {
       value: this.props.defaultValue || '',
       focus: false,
-      errorTip: ''
+      errorTip: '',
+      isShowPassword: false
     };
     this.submitParams = {
       Name: ''
@@ -24,6 +25,7 @@ class index extends React.Component {
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.clearInput = this.clearInput.bind(this);
+    this.showPassword = this.showPassword.bind(this);
   }
   handleChange(e) {
     let val = e;
@@ -95,9 +97,15 @@ class index extends React.Component {
       focus: false
     });
   }
+  showPassword() {
+    const {isShowPassword} = this.state;
+    this.setState({
+      isShowPassword: !isShowPassword
+    })
+  }
   render() {
-    const {mockInput, label, placeholder, tail, inputTip, theme} = this.props;
-    const {value, focus, errorTip} = this.state;
+    const {mockInput, label, placeholder, tail, inputTip, theme, inputType} = this.props;
+    const {value, focus, errorTip, isShowPassword} = this.state;
     const inputData = {
       disabled: this.props.disabled,
       value,
@@ -109,8 +117,46 @@ class index extends React.Component {
     if (theme === 'line') {
       return (
         <div className={styles.inputxWp_line}>
-          <div className={`${styles.inputxLabel} ${focus ? styles.focus : errorTip ? styles.error : null}`}>{focus || !errorTip ? label : errorTip ? errorTip : inputTip}</div>  
+          <div className={`${styles.inputxLabel} ${focus ? styles.focus : errorTip ? styles.error : null}`}>
+            {value && <React.Fragment>{focus || !errorTip ? label : errorTip ? errorTip : inputTip}</React.Fragment>}
+          </div>  
           <div className={styles.inputxBody}>
+            <div className={styles.inputxInput}>
+              {
+                mockInput
+                  ?
+                  <div>
+                    <Input
+                      data={inputData}
+                      handleInputFocus={this.handleMockInputFocus}
+                      handleInputDelete={this.handleInputDelete}
+                      defaultFocus={false}
+                    />
+                  </div>
+                  : <input type={inputType === 'password' ? isShowPassword ? 'text' : 'password' : 'text'} className={`${styles.formInput} ${styles.originInput}  ${inputType === 'password' && styles.password}`} maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
+              }
+              <div className={styles.tailCtr}>
+                {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+                  <BizIcon type="clear"></BizIcon>
+                </span>}
+                {inputType === 'password' && <span className={styles.eye} onClick={this.showPassword}>
+                  <BizIcon type={isShowPassword ? 'eye' : 'eyeblind'}></BizIcon>
+                </span>}
+              </div>
+            </div>
+            {tail && <div className={styles.inputxTail}> 
+              {tail}
+            </div>}
+          </div>
+          {/* <div className={`${styles.inputxFooter} ${focus ? styles.focus : errorTip ? styles.error : null}`} >{!focus && errorTip ? errorTip : inputTip}</div> */}
+        </div>
+      );
+    }
+    if (theme === 'bar') {
+      return (
+        <div className={styles.inputxWp_bar}>
+          <div className={`${styles.inputxBody} ${focus ? styles.focus : errorTip ? styles.error : null}`}>
+            <div className={styles.inputxLabel}>{label}</div>  
             <div className={styles.inputxInput}>
               {
                 mockInput
@@ -133,7 +179,6 @@ class index extends React.Component {
               {tail}
             </div>}
           </div>
-          {/* <div className={`${styles.inputxFooter} ${focus ? styles.focus : errorTip ? styles.error : null}`} >{!focus && errorTip ? errorTip : inputTip}</div> */}
         </div>
       );
     }
@@ -153,11 +198,16 @@ class index extends React.Component {
                     defaultFocus={false}
                   />
                 </div>
-                : <input className={`${styles.formInput} ${styles.originInput}`} maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
+                : <input type={inputType === 'password' ? isShowPassword ? 'text' : 'password' : 'text'} className={`${styles.formInput} ${styles.originInput} ${inputType === 'password' && styles.password}`} maxLength={this.props.maxlength} placeholder={placeholder} value={value} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} disabled={!!this.props.disabled} />
             }
-            {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
-              <BizIcon type="clear"></BizIcon>
-            </span>}
+            <div className={styles.tailCtr}>
+              {value && !this.props.disabled && <span className={styles.clear} onClick={this.clearInput}>
+                <BizIcon type="clear"></BizIcon>
+              </span>}
+              {inputType === 'password' && <span className={styles.eye} onClick={this.showPassword}>
+                <BizIcon type={isShowPassword ? 'eye' : 'eyeblind'}></BizIcon>
+              </span>}
+            </div>
           </div>
           {tail && <div className={styles.inputxTail}> 
             {tail}

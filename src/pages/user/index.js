@@ -1,21 +1,56 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 19:25:59
+ * @LastEditTime: 2020-06-15 16:37:34
  */ 
 import React, {PureComponent} from 'react';
+import {connect} from 'dva';
 import {ScrollWrap, LinkItem} from 'components';
 import styles from './index.less';
+const namespace = 'user';
 
-class index extends PureComponent {
+@connect(({user, loading}) => ({
+  user,
+  loading
+}))
+class index extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
 
     };
+    this.dispatch = this.props.dispatch;
     this.clientHeight = window.document.body.clientHeight;
+    this.fetchInfo = this.fetchInfo.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+  componentDidMount() {
+    this.fetchInfo();
+  }
+  fetchInfo() {
+    this.dispatch({
+      type: `${namespace}/info`,
+      payload: {}
+    })
+  }
+  logout() {
+    this.dispatch({
+      type: `${namespace}/logout`,
+      payload: {}
+    }).then((res) => {
+      localStorage.removeItem('_t');
+      localStorage.removeItem('_n');
+      localStorage.removeItem('vip');
+      localStorage.removeItem('level');
+      localStorage.removeItem('phone');
+      window.location.href = '/';
+    })
   }
   render() {
+    const {user} = this.props;
+    const {userInfo} = user;
+    const {phone, nickname} = userInfo;
+    console.log('user', user)
     return (
       <div className={styles.userWp}>
         <div className={styles.header}>
@@ -26,10 +61,10 @@ class index extends PureComponent {
             </dt>
             <dd>
               <p className={styles.phone}>
-              13538831277
+                {(phone || '').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1****$3')}
               </p>
               <p className={styles.nickName}>
-              币圈老韭菜
+                {nickname}
               </p>
             </dd>
           </dl>
@@ -43,13 +78,13 @@ class index extends PureComponent {
         ></LinkItem>
 
         <LinkItem
-          link="/test"
+          link="/user/info"
           icon="userInfo"
           title="个人资料"
           iconClassName="userInfo"
         ></LinkItem>
         <LinkItem
-          link="/test"
+          link="/user/changePw"
           icon="pw"
           title="修改密码"
           iconClassName="pw"
@@ -61,6 +96,9 @@ class index extends PureComponent {
           iconClassName="about"
           isLast
         ></LinkItem>
+        <div className={styles.logout}>
+          <span onClick={this.logout}>退出登录</span>
+        </div>
       </div>
     );
   }

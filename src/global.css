@@ -198,9 +198,41 @@ body {
 }
 
 .am-tab-bar-bar .am-tab-bar-tab-icon .iconfont{
-  font-size: 40px;
+  font-size: 32px;
 }
 
+.am-tab-bar-bar .am-tab-bar-tab-title {
+  margin-top: 0 !important;
+}
+.am-tab-bar-bar{
+  height: 100px !important;
+}
 h1, h2, h3, h4, h5, h6{
   color: #fff !important;
 }
+
+.wp{
+  padding: 0 25px;
+}
+
+/*重写picker样式*/
+/* .am-picker-popup-item{
+  color: #636363 !important;
+}
+.am-switch .checkbox {
+  width: 75px !important;
+  height: 34px !important;
+  border-radius: 34px !important;
+}
+.am-switch .checkbox:before{
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 26px!important;
+  left: 1px !important;
+  top: 1px !important;
+}
+.am-switch .checkbox:after{
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 26px !important;
+} */

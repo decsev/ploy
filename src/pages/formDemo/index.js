@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-09 20:26:19
+ * @LastEditTime: 2020-06-10 17:59:33
  */ 
 /*global someFunction ENV:true log:true*/
 /*eslint no-undef: "error"*/
@@ -115,8 +115,11 @@ class Test extends React.Component {
   }
   changeInputState(type, isRight) {
     const key = `${type}IsRight`;
-    this.state[key] = isRight;
-    this.setState(this.state);
+    let param = {};
+    param[key] = isRight;
+    this.setState({
+      ...param
+    })
   }
   changeSubmitParams(type, value) {
     const valNameTypeMap = {
@@ -142,7 +145,7 @@ class Test extends React.Component {
     }
     const {nameIsRight, phoneIsRight, exchangeIsRight} = this.state;
     this.btnActive = nameIsRight && phoneIsRight && exchangeIsRight;
-    let theme = '';
+    let theme = 'line'; // 主题line, 'bar'
     return (
       <div className={styles.testWp}>
         <Inputx
@@ -193,7 +196,7 @@ class Test extends React.Component {
         >
 
         </Selectx>
-        <div><Button type="primary" disabled={!this.btnActive} onClick={this.handleSubmit}>提交</Button></div>
+        <div style={{paddingTop: '50px'}}><Button type="primary" disabled={!this.btnActive} onClick={this.handleSubmit}>提交</Button></div>
       </div>
     );
   }
