@@ -18,7 +18,8 @@ module.exports = {
   },
   "globals": {
     "ENV": true, // 全局变量
-    "log": true
+    "log": true,
+    "Swiper":  true
   },
   "env": {
     "es6": true,

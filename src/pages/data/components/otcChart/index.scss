@@ -1,0 +1,131 @@
+.volumeContainer{
+    .title{
+        padding: 20px 20px 10px;
+        .info{
+            font-size: 20px;
+            color: rgba(0,0,0,.85);
+            line-height: 24px;
+            float: left;
+            margin-right: 10px;
+        }
+    }
+    padding-bottom: 60px;
+
+    .cpTitle{
+        padding: 20px 20px 0;
+        p{
+            font-size: 14px;
+            line-height: 24px;
+            float: left;
+            margin-right: 10px;
+        }
+        ul{
+            list-style: none;
+            li{
+                display: inline-block;
+                line-height: 24px;
+                font-size: 14px;
+                margin-left: 10px;
+                cursor: pointer;
+                &:hover{
+                    color: #0070cc;
+                }
+                &.selected{
+                    color: #0070cc;
+                }
+            }
+        }
+    }
+}
+
+.mainContainer{
+    padding-bottom: 20px;
+    .infoContainer{
+        .info{
+            font-size: 16px;
+            line-height: 90px;
+            .buy{
+                color: green;
+            }
+            .sell{
+                color: red;
+            }
+            text-align: center;
+        }
+        .sumInfo{
+            font-size: 16px;
+            line-height: 90px;
+            text-align: center;
+            .buy{
+                color: green;
+            }
+            .sell{
+                color: red;
+            }
+        }
+        .infoMain{
+            width: 280px;
+            margin: 0 auto;
+            dt{
+                display: flex;
+                .left{
+                    width: 50%;
+                    span{
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: green;
+                    }
+                    p{
+                        font-size: 13px;
+                        color: #999;
+                    }
+                }
+                .right{
+                    width: 50%;
+                    text-align: right;
+                    span{
+                        font-size: 18px;
+                        font-weight: bold;
+                        
+                        color: red;
+                    }
+                    p{
+                        font-size: 13px;
+                        color: #999;
+                    }
+                }
+            }
+            dd{
+                .chart{
+                    display: flex;
+                    height: 15px;
+                    background: #ccc;
+                    border-radius: 10px;
+                    .z{
+                        height: 15px;
+                        
+                        background: green;
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                    }
+                    .r{
+                        height: 15px;
+                        background: red;
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+                }
+                .time{
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
+}
+.buy{
+    color: green;
+}
+.sell{
+    color: red;
+}

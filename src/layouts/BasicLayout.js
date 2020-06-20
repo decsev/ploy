@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-18 11:28:04
+ * @LastEditTime: 2020-06-19 10:39:48
  */
 
 import React, {PureComponent} from 'react';
@@ -17,7 +17,8 @@ NProgress.configure({showSpinner: false});
 const BarRoutes = [
   '/strategy', 
   '/market', 
-  '/user'
+  '/user',
+  '/data' 
 ];
 let currHref = '';
 

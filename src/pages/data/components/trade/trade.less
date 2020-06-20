@@ -1,0 +1,62 @@
+:global{
+  .tradeContainer {
+    background: #212425;
+    padding: 30px 30px;
+    margin: 25px 25px 25px;
+    border-radius: 5px;
+    .title {
+      display: flex;
+      padding-bottom: 20px;
+      color: #868686;
+      line-height: 40px;
+      span {
+        &:nth-child(1) {
+          flex-grow: 1;
+          font-size: 24px;
+        }
+
+        &:nth-child(2) {
+          width: 30px;
+          color: #ccc;
+          font-size: 20px;
+        }
+
+        &:nth-child(3) {
+          width: 30px;
+          color: #ccc;
+          font-size: 20px;
+        }
+      }
+
+      .changePeriod {
+        b {
+          margin-left: 5px;
+          font-weight: normal;
+
+          span {
+            color: #6abeff;
+            margin-left: 5px;
+            position: relative;
+          }
+
+          i {
+            color: #6abeff;
+            position: absolute;
+            transform: scale(0.5);
+          }
+        }
+      }
+    }
+  }
+  .contractTitle {
+    .text-blue{
+      color: #4e8fad;
+      padding-left: 10px;
+      position: relative;
+      .icon{
+        color: #4e8fad;
+        position: absolute;
+      }
+    }
+  }
+}

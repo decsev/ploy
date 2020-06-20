@@ -1,0 +1,6 @@
+{
+  "name": "profitability",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./profitabilityChart.js"
+}

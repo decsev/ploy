@@ -207,32 +207,43 @@ body {
 .am-tab-bar-bar{
   height: 100px !important;
 }
-h1, h2, h3, h4, h5, h6{
-  color: #fff !important;
-}
 
 .wp{
   padding: 0 25px;
 }
 
-/*重写picker样式*/
-/* .am-picker-popup-item{
-  color: #636363 !important;
+/*重写tab样式*/
+.tabTop{
+  padding-top: 80px;
+  position: relative;
 }
-.am-switch .checkbox {
-  width: 75px !important;
-  height: 34px !important;
-  border-radius: 34px !important;
+.tabTop-tab-bar-wrap{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  width: 100%;
+  box-shadow: 0 1px 5px #000
 }
-.am-switch .checkbox:before{
-  width: 26px !important;
-  height: 26px !important;
-  border-radius: 26px!important;
-  left: 1px !important;
-  top: 1px !important;
+.tabTop .am-tabs-default-bar-tab{
+  height: 80px;
 }
-.am-switch .checkbox:after{
-  width: 26px !important;
-  height: 26px !important;
-  border-radius: 26px !important;
-} */
+.am-tabs-default-bar-tab-active{
+  font-weight: bold;
+}
+.tabTop .am-tabs-default-bar-top .am-tabs-default-bar-nextpage, .am-tabs-default-bar-bottom .am-tabs-default-bar-nextpage{
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #1f1f1f);
+}
+.tabTop .am-tabs-default-bar-top .am-tabs-default-bar-prevpage, .am-tabs-default-bar-bottom .am-tabs-default-bar-prevpage{
+  background: linear-gradient(to right, #1f1f1f, rgba(0, 0, 0, 0));
+}
+.tabTop .am-tabs-default-bar-top .am-tabs-default-bar-tab::after{
+  display: none !important;
+}
+
+.up {
+  color: #3a9555;
+}
+.down {
+  color: #bf504f;
+}

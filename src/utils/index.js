@@ -576,9 +576,29 @@ const deepGet = (data, str, def = null) => {
   return def;
 }
 
+
+const yiwanNum = (v, fixedNum = 2) => {
+  v = Number(v);
+  let result = null;
+  if (v || v === 0) {
+    if (Math.abs(v) >= 10000 && Math.abs(v) < 100000000) {
+      result = fPrice(fNum(v / 10000, fixedNum, 1)) + '万';
+    } else if (Math.abs(v) >= 100000000 && Math.abs(v) < 100000000000) {
+      result = fPrice(fNum(v / 100000000, fixedNum, 1)) + '亿';
+    } else if (Math.abs(v) > 100000000000) {
+      result = fPrice(fNum(v / 100000000000, fixedNum, 1)) + '千亿';
+    } else if (Math.abs(v) < 1) {
+      result = fNum(v, 4, 1);
+    } else {
+      result = fPrice(fNum(v, fixedNum, 1));
+    }
+  }
+  return result;
+};
+
 const wanNum = (v, fixedNum = 2, wanFixedNum = 2, ltone = 4) => {
   v = Number(v);
-  let result = null
+  let result = null;
   if (v || v === 0) {
     if (Math.abs(v) >= 10000) {
       result = fPrice(fNum(v / 10000, wanFixedNum, 1)) + 'w';
@@ -589,8 +609,7 @@ const wanNum = (v, fixedNum = 2, wanFixedNum = 2, ltone = 4) => {
     }
   }
   return result;
-}
-
+};
 module.exports = {
   config,
   request,
@@ -627,5 +646,6 @@ module.exports = {
   toChineseAndCal,
   changeIcon,
   deepGet,
-  wanNum
+  wanNum,
+  yiwanNum
 }

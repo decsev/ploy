@@ -47,7 +47,19 @@ dl.quotesContainer {
     height: 110px;
     padding: 20px 25px;
     color: #d3d4d9;
-    border-bottom: 1px solid #333333;
+    // border-bottom: 1px solid #333333;
+    position: relative;
+    &::after{
+      width: 200%;
+      height: 0px;
+      content: '';
+      border-bottom: 1px solid #252525;
+      transform-origin: 0% 100%;
+      transform: scaleY(0.5);
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+    }
     & > div {
       &:first-child {
         width: 250px;

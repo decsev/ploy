@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-18 19:32:18
+ * @LastEditTime: 2020-06-19 11:43:05
  */ 
 import React, {PureComponent} from 'react';
 import {connect} from 'dva';
@@ -49,7 +49,6 @@ class index extends React.Component {
         span: this.state.span
       }
     }).then((res) => {
-      console.log('000', res)
       Toast.hide();
     })
   }
@@ -87,7 +86,6 @@ class index extends React.Component {
       });
     }
     
-    console.log(quotesDataArr);
     return (
       <div className={styles.marketWp}>
         <div className={styles.quotesInner}>

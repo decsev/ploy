@@ -14,6 +14,12 @@ import theme from '@/theme';
 
 const tabBarData = [
   {
+    title: '数据',
+    icon: 'data',
+    selectedIcon: 'data',
+    link: '/data'
+  },
+  {
     title: '行情',
     icon: 'market',
     selectedIcon: 'market',
@@ -37,7 +43,7 @@ class MenuBar extends PureComponent {
   render() {
     const {isMenubar, children, pathname} = this.props;
     return (
-      <TabBar hidden={isMenubar} tintColor={theme.primaryColor} barTintColor="#262b2f" unselectedTintColor="#909090">
+      <TabBar hidden={isMenubar} tintColor="#fff" barTintColor="#262b2f" unselectedTintColor="#909090" prerenderingSiblingsNumber={4}>
         {tabBarData.map(({title, icon, selectedIcon, link}) => 
           <TabBar.Item
             key={link}

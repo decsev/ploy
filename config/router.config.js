@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:33:34
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-18 17:23:52
+ * @LastEditTime: 2020-06-20 16:36:49
  */ 
 export default [
   {
@@ -9,6 +9,7 @@ export default [
     component: '../layouts/BasicLayout',
     routes: [
       // {path: '/', component: './index/index', title: '行情'},
+      {path: '/', redirect: '/data'},
       {path: '/about', component: './index/about', title: '关于我们'},
       {path: '/reg', component: './index/reg', title: '手机号注册'},
       {path: '/login', component: './index/login', title: '手机号登录'},
@@ -18,10 +19,19 @@ export default [
       {path: '/formDemo', component: './formDemo/index', title: '表单demo'},
       {path: '/kline/:symbol', component: './index/kline', title: 'k线'},
       {
+        path: '/data',
+        component: '../layouts/BasicLayout',
+        routes: [
+          {path: '/data', component: './data/index', title: '数据'},
+          {component: '404', title: '页面没找到'}
+        ]
+      },
+      {
         path: '/market',
         component: '../layouts/BasicLayout',
         routes: [
-          {path: '/market', component: './market/index', title: '行情'}
+          {path: '/market', component: './market/index', title: '行情'},
+          {component: '404', title: '页面没找到'}
         ]
       },
       {

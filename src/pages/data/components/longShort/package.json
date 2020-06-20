@@ -1,0 +1,7 @@
+{
+    "name": "longShort",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./longShort.js"
+  }
+  

@@ -1,0 +1,49 @@
+.volumeContainer{
+    .title{
+        padding: 20px 20px 10px;
+        .info{
+            font-size: 20px;
+            color: rgba(0,0,0,.85);
+            line-height: 34px;
+            float: left;
+            margin-right: 10px;
+            border-left: 5px solid #108ee9;
+            padding-left: 10px;
+
+            b {
+                margin-left: 5px;
+                font-weight: normal;
+
+                span {
+                    color: #6abeff;
+                    margin-left: 5px;
+                    position: relative;
+                }
+
+                i {
+                    color: #6abeff;
+                    position: absolute;
+                    transform: scale(0.5)
+                }
+            }
+        }
+        .time{
+            line-height: 34px;
+            b {
+                margin-right: 15px;
+                font-weight: normal;
+                color: #ccc;
+                span {
+                    position: relative;
+                }
+
+                i {
+                    color: #ccc;
+                    position: absolute;
+                    transform: scale(0.5)
+                }
+            }
+        }
+    }
+    padding-bottom: 20px;
+}

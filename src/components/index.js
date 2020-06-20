@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-05 11:03:37
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-18 17:26:08
+ * @LastEditTime: 2020-06-20 14:58:42
  */ 
 import BizIcon from './BizIcon';
 import MenuBar from './MenuBar';
@@ -15,6 +15,8 @@ import NavBar from './NavBar';
 import Empty from './Empty';
 import GetCode from './GetCode';
 import Tv from './Tv';
+import QuotesSwiper from './QuotesSwiper';
+import MyPicker from './MyPicker';
 
 export {
   BizIcon,
@@ -28,5 +30,7 @@ export {
   NavBar,
   Empty,
   GetCode,
-  Tv
+  Tv,
+  QuotesSwiper,
+  MyPicker
 }
