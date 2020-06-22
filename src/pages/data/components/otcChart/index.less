@@ -1,18 +1,21 @@
-.tradeChartContainer{
+:global{
+.volumeContainer{
     .title{
-        padding: 20px 20px 10px;
+        padding: 20px 0px 10px;
+        .time{
+            padding-right: 20px;
+        }
         .info{
             font-size: 20px;
-            color: rgba(0,0,0,.85);
             line-height: 24px;
             float: left;
             margin-right: 10px;
         }
     }
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 
     .cpTitle{
-        padding: 0px 5px 0;
+        padding: 20px 20px 0;
         p{
             font-size: 14px;
             line-height: 24px;
@@ -24,7 +27,7 @@
             li{
                 display: inline-block;
                 line-height: 24px;
-                font-size: 18px;
+                font-size: 14px;
                 margin-left: 10px;
                 cursor: pointer;
                 &:hover{
@@ -36,20 +39,14 @@
             }
         }
     }
-    .list{
-        width: 100%;
-        overflow-x: hidden;
-        .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
-            white-space: nowrap !important;
-        }
-    }
 }
 
 .mainContainer{
     padding-bottom: 20px;
     .infoContainer{
         .info{
-            font-size: 14px;
+            font-size: 16px;
+            line-height: 90px;
             .buy{
                 color: green;
             }
@@ -60,6 +57,7 @@
         }
         .sumInfo{
             font-size: 16px;
+            line-height: 90px;
             text-align: center;
             .buy{
                 color: green;
@@ -69,7 +67,7 @@
             }
         }
         .infoMain{
-            width: 70%;
+            width: 280px;
             margin: 0 auto;
             dt{
                 display: flex;
@@ -133,4 +131,5 @@
 }
 .sell{
     color: red;
+}
 }

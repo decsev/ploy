@@ -93,31 +93,6 @@ class Index extends React.Component {
         );
       }
     };
-    if (!inTab) {
-      return (
-        <div className="page-container page-container-three">
-          <div className="page-innerContainer">
-            <div className="header-title">
-              <NavBar
-                icon={<Icon type="left" />}
-                onLeftClick={() => {
-                  this.props.history.go(-1);
-                }}
-                rightContent={[<MyPicker {...myPickerPorps}></MyPicker>]}
-              >合约持仓总量及交易量</NavBar>
-            </div>
-            <div className="scroll-container">
-              <div className="main-container" style={{minHeight: '100%'}}>
-                {(this.state.symbolList || []).map((symbol, index) => {
-                  return <div key={index} id={symbol}><Volume ref={symbol} symbol={symbol} unit={this.state.unit} dispatch={this.props.dispatch} app={this.props.app}></Volume></div>
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     return <div className="inTabContainer">
       {(this.state.symbolList || []).map((symbol, index) => {
         return <div key={index} id={symbol}><Volume ref={symbol} symbol={symbol} unit={this.state.unit} dispatch={this.props.dispatch} app={this.props.app}></Volume></div>
@@ -127,10 +102,4 @@ class Index extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     loading: state.loading,
-//     tool: state.tool
-//   };
-// }
 export default Index;

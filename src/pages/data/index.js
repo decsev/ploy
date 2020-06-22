@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-20 16:56:25
+ * @LastEditTime: 2020-06-22 16:53:22
  */ 
 import React, {PureComponent} from 'react';
 import {connect} from 'dva';
@@ -14,7 +14,7 @@ import GapPro from './gapPro.js';
 import Ls from './ls.js';
 import Cp from './cp.js';
 import Explosive from './explosive.js';
-import Trade from './trade.js';
+import Trade from './trade.js'; // 主力资金
 import Quotes from './quotes.js';
 import Price from './price.js';
 import Otc from './otc.js';
@@ -46,25 +46,26 @@ class index extends React.Component {
     let result = null;
     switch (key) {
       case 0:
-        result = <Quotes inTab={true}></Quotes>
+        result = <Quotes></Quotes>
         break
       case 1:
-        result = <GapPro inTab={true}></GapPro>
+        result = <GapPro></GapPro>
         break
       case 2:
-        result = <Ls inTab={true}></Ls>
+        result = <Ls></Ls>
         break
       case 3:
-        result = <Cp inTab={true}></Cp>
+        result = <Cp></Cp>
         break;
       case 4:
-        result = <Explosive inTab={true}></Explosive>
+        result = <Explosive></Explosive>
         break;
       case 5:
-        result = <Trade inTab={true}></Trade>
+        result = <Trade></Trade>
         break;
       case 6:
-        result = <Price inTab={true}></Price>
+        result = <div>Price</div>  
+        // result = <Price inTab={true}></Price>
         break;
       case 7:
         result = <Otc inTab={true}></Otc>
@@ -80,14 +81,14 @@ class index extends React.Component {
   render() {
     const tabs = [
       {title: '首页', key: 0, sort: 0},
-      {title: '价格', key: 6, sort: 1},
-      {title: '价差', key: 1, sort: 2},
-      {title: '多空比', key: 2, sort: 3},
-      {title: '持仓量', key: 3, sort: 4},
-      {title: '爆仓量', key: 4, sort: 5},
-      {title: '主力资金', key: 5, sort: 6},
-      {title: 'OTC溢价', key: 7, sort: 7},
-      {title: '挖矿难度', key: 8, sort: 8}
+      // {title: '价格', key: 6, sort: 1},
+      // {title: '价差', key: 1, sort: 2},
+      {title: '多空比', key: 2, sort: 1},
+      {title: '持仓量', key: 3, sort: 2},
+      {title: '爆仓量', key: 4, sort: 3},
+      {title: '主力资金', key: 5, sort: 4},
+      {title: 'OTC溢价', key: 7, sort: 5},
+      {title: '挖矿难度', key: 8, sort: 6}
     ]
     const {location} = this.props;
     const {query} = location;
@@ -111,7 +112,7 @@ class index extends React.Component {
         swipeable={true}
         destroyInactiveTab={true}
         prerenderingSiblingsNumber={0}
-        animated={false}
+        animated={true}
         renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
         tabBarUnderlineStyle={{border: '0px'}}
         tabBarTextStyle={{fontSize: '14px', padding: '0px'}}

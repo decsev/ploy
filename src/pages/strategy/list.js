@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-02 17:45:33
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-18 18:25:23
+ * @LastEditTime: 2020-06-22 17:27:47
  */ 
 /*global someFunction ENV:true log:true*/
 /*eslint no-undef: "error"*/
@@ -88,6 +88,7 @@ class index extends PureComponent {
           title="规则"
           footer={[{text: '确定', onPress: () => {this.setState({tipsVisible: false})}}]}
           wrapProps={{onTouchStart: this.onWrapTouchStart}}
+          style={{width: '80%'}}
         >
           {tipDom}
         </Modal>

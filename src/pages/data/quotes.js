@@ -237,7 +237,7 @@ class Index extends React.Component {
     return <div className="inTabContainer">
       {!!bannerData && <QuotesSwiper {...swiperProps}></QuotesSwiper>}
 
-      <Gap {...gapProps}></Gap>
+      {/* <Gap {...gapProps}></Gap> */}
 
       {contractdata && 
         <LongShort longShortData={deepGet(contractdata, 'long_short')}></LongShort>

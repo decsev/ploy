@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-06-15 12:06:32
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-20 10:59:16
+ * @LastEditTime: 2020-06-22 10:58:13
  */ 
 import * as dataServices from 'services/data';
 
@@ -351,7 +351,7 @@ export default {
 
     *explosive({payload}, {call, put}) {
       const data = yield call(dataServices.explosive, payload);
-      if (data.code === 0 && data) {
+      if (data.code === 0 && data.success) {
         return data.payload.data;
       }
       throw data;

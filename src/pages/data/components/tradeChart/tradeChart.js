@@ -1,20 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon, Select, Radio, Table} from 'antd';
-import { MyPicker } from 'components';
-import { config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum, fPrice } from 'utils';
-import './tradeChart.scss'
+import {Row, Col, Icon, Select, Radio, Table} from 'antd';
+import {MyPicker} from 'components';
+import {config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum, fPrice} from 'utils';
+import './tradeChart.less'
 import * as echarts from 'echarts';
 
-const namespace = 'tool';
-// [1h,3h,8h,24h,48h,7d]
+const namespace = 'data';
 const timeList = [
   {value: '1h', label: '1小时'},
   {value: '3h', label: '3小时'},
   {value: '8h', label: '8小时'},
   {value: '1d', label: '1天'},
   {value: '2d', label: '2天'},
-  {value: '7d', label: '7天'},
+  {value: '7d', label: '7天'}
 ]
 class volume extends React.Component {
   constructor(props) {
@@ -90,7 +89,7 @@ class volume extends React.Component {
     })
   }
   doDraw() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
     const {timestamp, price, volume, timeType, symbol} = this.state;
     if ((timestamp || []).length > 0) {
@@ -114,10 +113,23 @@ class volume extends React.Component {
         return new Date(item * 1000).format('MM/dd hh:mm');
       })
       let option = {
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
         // color: ['#14b143', '#ef232a', '#295b51'],
-        color: ['green', 'red', '#295b51'],
+        color: ['#3a9555', '#bf504f', '#295b51'],
         legend: {
           data: legend,
           top: 20,
@@ -126,7 +138,10 @@ class volume extends React.Component {
             [legend[1]]: true,
             [legend[2]]: true
           },
-          show: true
+          show: true,
+          textStyle: {
+            color: '#c2c9d1'
+          }
         },
 
         tooltip: {
@@ -187,7 +202,7 @@ class volume extends React.Component {
             type: 'slider',
             show: false,
             xAxisIndex: [0]
-          },
+          }
           // {
           //   type: 'inside',
           //   xAxisIndex: [0]
@@ -391,7 +406,7 @@ class volume extends React.Component {
     
   }
   render() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
     const content = <div>
       <p>主动买入量：展示单位时间内，大单主动性买盘的成交量（taker吃挂单买入），即主力资金流入量。</p>
@@ -503,19 +518,19 @@ class volume extends React.Component {
         if (v[0] !== this.state.timeType) {
           this.setState(
             {
-              timeType: v[0],
-            }, ()=>{
+              timeType: v[0]
+            }, () => {
               this.timeTypeChange(v[0]);
             });
         }
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b><span>{timeTypeName}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
+          <span onClick={props.onClick} className="text-blue">
+            {timeTypeName}<i className="icon iconfont icon-downSmall"></i>
           </span>
         );
-      },
+      }
     };
 
     return (
@@ -526,37 +541,19 @@ class volume extends React.Component {
             <Col span={20}>
               <ul>
                 {(this.state.symbolList || []).map((item, index) => {
-                  return <li className={this.state.symbol === item ? "selected" : null} onClick={() => {
+                  return <li className={this.state.symbol === item ? 'selected' : null} onClick={() => {
                     this.changeSelectSymbol(item);
                   }}>{item}</li>
                 })}
               </ul>
             </Col>
             <Col span={4} style={{textAlign: 'right'}}>
-              <MyPicker {...myPickerTimePorps}></MyPicker>
+              <div className="time">
+                <MyPicker {...myPickerTimePorps}></MyPicker>
+              </div>
             </Col>
           </Row>
         </div>
-
-        {/* <div className="title">
-          <Row gutter={[12, 12]}>
-            <Col span={12}>
-              <span className="info">{this.state.symbol}合约主力资金</span> 
-            </Col>
-            <Col span={24}>
-              <span style={{marginRight: '10px'}}><MyDate key={from + to} {...myDateProps}></MyDate></span>
-              <span style={{float: 'right'}}>
-                <Radio.Group value={this.state.timeType} onChange={(e) => {
-                  this.timeTypeChange(e);
-                }}>
-                  {(this.state.timeList || []).map((item) => {
-                    return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                  })}
-                </Radio.Group>
-              </span>
-            </Col>
-          </Row>
-        </div> */}
         <div className="content">
           <div id="echartId" style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}></div>
         </div>
@@ -564,11 +561,6 @@ class volume extends React.Component {
         <div className="mainContainer">
           <div className="infoContainer">
             <Row gutter={[12, 12]}>
-              {/* <Col span={8}>
-                <p className="info">
-                近{timeTypeName}一共有<span className="buy">{yiwanNum(buyNum)}</span>个大额买单，<span className="sell">{yiwanNum(sellNum)}</span>个大额卖单
-                </p>
-              </Col> */}
               <Col span={24}>
                 <dl className="infoMain">
                   <dt>
@@ -595,7 +587,7 @@ class volume extends React.Component {
                   <p className="info">
                   近{timeTypeName}一共有<span className="buy">{yiwanNum(buyNum)}</span>个大额买单，<span className="sell">{yiwanNum(sellNum)}</span>个大额卖单
                   </p>
-                  <p className="sumInfo">{total >= 0 ? '净流入' : '净流出'} <span className={total >= 0 ? "buy" : "sell"}>{yiwanNum(total)}</span> USDT</p>
+                  <p className="sumInfo">{total >= 0 ? '净流入' : '净流出'} <span className={total >= 0 ? 'buy' : 'sell'}>{yiwanNum(total)}</span> USDT</p>
                 </div>
               </Col>
               {/* <Col span={8}>

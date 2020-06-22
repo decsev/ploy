@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-01-16 11:05:30
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-20 15:37:48
+ * @LastEditTime: 2020-06-22 17:16:51
  */
 import React, {PureComponent} from 'react';
 import router from 'umi/router';
@@ -195,7 +195,7 @@ class trade extends React.Component {
               router.replace({
                 pathname: '/data',
                 query: {
-                  tabIndex: 5
+                  tabIndex: 4
                 }
               })
             }}

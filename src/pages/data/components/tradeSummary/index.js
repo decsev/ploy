@@ -1,12 +1,17 @@
-import React, { PureComponent } from 'react';
+/*
+ * @Date: 2020-06-19 11:31:17
+ * @LastEditors: lianggua
+ * @LastEditTime: 2020-06-22 15:18:20
+ */ 
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon} from 'antd-mobile';
+import {Row, Col, Icon} from 'antd-mobile';
 import {MyPicker} from 'components';
-import { config, deepGet, deepClone, yiwanNum } from 'utils';
+import {config, deepGet, deepClone, yiwanNum} from 'utils';
 
-import './index.scss'
+import './index.less'
 
-const namespace = 'tool';
+const namespace = 'data';
 
 class index extends React.Component {
   constructor(props) {
@@ -52,12 +57,12 @@ class index extends React.Component {
               {list.map((item, index) => {
                 return <tr key={index}>
                   <td>{item.symbol}</td>
-                  <td className={`${item['1h'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['1h'])}</td>
-                  <td className={`${item['3h'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['3h'])}</td>
-                  <td className={`${item['8h'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['8h'])}</td>
-                  <td className={`${item['24h'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['24h'])}</td>
-                  <td className={`${item['48h'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['48h'])}</td>
-                  <td className={`${item['7d'] >= 0 ? "green" : "red"}`}>{yiwanNum(item['7d'])}</td>
+                  <td className={`${item['1h'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['1h'])}</td>
+                  <td className={`${item['3h'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['3h'])}</td>
+                  <td className={`${item['8h'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['8h'])}</td>
+                  <td className={`${item['24h'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['24h'])}</td>
+                  <td className={`${item['48h'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['48h'])}</td>
+                  <td className={`${item['7d'] >= 0 ? 'green' : 'red'}`}>{yiwanNum(item['7d'])}</td>
                 </tr>
               })}
             </tbody>

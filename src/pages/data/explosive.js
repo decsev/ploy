@@ -1,13 +1,11 @@
 import React from 'react';
 import {connect} from 'dva';
-// import BScroll from 'better-scroll';
 import router from 'umi/router';
 import {MyPicker} from 'components';
 import {Button, Modal, Toast, Flex, NavBar, Icon} from 'antd-mobile';
 import {Row, Col, Table} from 'antd';
 import {TradeSummary, TradeChart} from './components';
-// import 'antd-mobile/dist/antd-mobile.css';
-// import './explosive.scss';
+import './explosive.less';
 import {
   numAdd,
   numSub,
@@ -23,7 +21,7 @@ import {
 import * as echarts from 'echarts';
 
 const {alert} = Modal;
-const namespace = 'tool';
+const namespace = 'data';
 
 const timeList = [
   {value: '1h', label: '1小时'},
@@ -52,7 +50,10 @@ const priceLen = {
   XRP: 4,
   TRX: 4
 };
-
+@connect(({data, loading}) => ({
+  data,
+  loading
+}))
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -186,7 +187,7 @@ class Index extends React.Component {
     });
   }
   doDraw() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
     let {
       timestamps,
@@ -234,7 +235,20 @@ class Index extends React.Component {
         return -item;
       });
       let option = {
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
         // color: ['#14b143', '#ef232a', '#295b51'],
         color: ['green', 'red', '#295b51', '#4c8eaf', '#cf805f', '#4c8eaf', '#cf805f'],
@@ -250,6 +264,9 @@ class Index extends React.Component {
             [legend[4]]: false, //Huobi季度价格
             [legend[5]]: true, //主力净流入
             [legend[6]]: true //主力净流出
+          },
+          textStyle: {
+            color: '#c2c9d1'
           }
         },
 
@@ -725,7 +742,7 @@ class Index extends React.Component {
     );
   }
   render() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
     const columns = [
       {
@@ -827,13 +844,9 @@ class Index extends React.Component {
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b>
-              <span>
+          <span onClick={props.onClick} className="text-blue">
                 颗粒度:{getObjFromArray(this.state.spanList, 'value', this.state.span).label}
-                <i className="icon iconfont icon-xiasanjiaoxing"></i>
-              </span>
-            </b>
+            <i className="icon iconfont icon-downSmall"></i>
           </span>
         );
       }
@@ -860,216 +873,13 @@ class Index extends React.Component {
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b>
-              <span>
+          <span onClick={props.onClick} className="text-blue">
                 时间周期:{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}
-                <i className="icon iconfont icon-xiasanjiaoxing"></i>
-              </span>
-            </b>
+            <i className="icon iconfont icon-downSmall"></i>
           </span>
         );
       }
     };
-    const {inTab} = this.props;
-    if (!inTab) {
-      return (
-        <div className="page-container page-container-three">
-          <div className="page-innerContainer">
-            <div className="header-title">
-              <NavBar
-                icon={<Icon type="left" />}
-                onLeftClick={() => {
-                  this.props.history.go(-1);
-                }}
-              >
-                爆仓量
-              </NavBar>
-            </div>
-            <div className="scroll-container">
-              <div className="main-container" style={{minHeight: '100%'}}>
-                <div className="cpContainer">
-                  <div className="summary">
-                    <div className="title">{this.state.symbol}合约爆仓数据(U)</div>
-                    <div className="cpTitle">
-                      <Row>
-                        <Col span={24}>
-                          <ul>
-                            {(this.state.symbolList || []).map((item, index) => {
-                              return (
-                                <li
-                                  className={this.state.symbol === item ? 'selected' : null}
-                                  onClick={() => {
-                                    this.changeSelectSymbol(item);
-                                  }}
-                                >
-                                  {item}
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </Col>
-                        {/* <Col span={6}><p className="tips">数据统计自OKex、 火币</p></Col> */}
-                      </Row>
-                    </div>
-                    <div className="tableContent">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <th>#</th>
-                            <th>15分钟</th>
-                            <th>1小时</th>
-                            <th>3小时</th>
-                            <th>8小时</th>
-                            <th>24小时</th>
-                            <th>48小时</th>
-                            <th>7天</th>
-                          </tr>
-                          {long && 
-                            <tr>
-                              <td className="firstTd">多头爆仓额</td>
-                              {(Object.keys(long) || []).map((key, index) => {
-                                return (
-                                  <td key={index}>
-                                    <span className="green">{yiwanNum(long[key])}</span>
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                          }
-                          {short && 
-                            <tr>
-                              <td className="firstTd">空头爆仓额</td>
-                              {(Object.keys(short) || []).map((key, index) => {
-                                return (
-                                  <td key={index}>
-                                    <span className="red">{yiwanNum(short[key])}</span>
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                          }
-                          {sum && 
-                            <tr>
-                              <td className="firstTd">小计</td>
-                              {(Object.keys(sum) || []).map((key, index) => {
-                                return (
-                                  <td key={index}>
-                                    <span className="grey">{yiwanNum(sum[key])}</span>
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                          }
-                        </tbody>
-                      </table>
-                    </div>
-                    <p className="tips">数据统计自BitMEX、OKEx、火币</p>
-                  </div>
-
-                  <div className="title">
-                    <Row gutter={[12, 12]}>
-                      <Col span={12}>
-                        <span style={{float: 'left'}}>
-                          <MyPicker {...myPickerTimePorps}></MyPicker>
-                          {/* &emsp;颗粒度:&emsp; */}
-                          {/* <Select value={this.state.span} onChange={(e) => {
-                        this.exSpanChange(e)
-                      }} style={{width: 120}}>
-                        {(this.state.spanList || []).map((o) => {
-                          return <Option value={o.value}>{o.name}</Option>
-                        })}
-                      </Select> */}
-                        </span>
-                      </Col>
-                      <Col span={12} style={{textAlign: 'right'}}>
-                        <span style={{float: 'right'}}>
-                          <MyPicker {...myPickerTimePorps1}></MyPicker>
-                          {/* &emsp;时间周期:&emsp; */}
-                          {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
-                        this.timeTypeChange(e);
-                      }}>
-                        {(this.state.timeList || []).map((item) => {
-                          return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                        })}
-                      </Radio.Group> */}
-                        </span>
-                      </Col>
-                    </Row>
-                  </div>
-                  <div className="content">
-                    <div
-                      id="echartId"
-                      style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}
-                    ></div>
-                  </div>
-
-                  <div className="mainContainer">
-                    <div className="infoContainer">
-                      <Row gutter={[12, 12]}>
-                        <Col span={24}>
-                          <dl className="infoMain">
-                            <dt>
-                              <div className="left">
-                                <span>{yiwanNum(longVolume)}</span>
-                                <p>多头爆仓 {buyPercent}%</p>
-                              </div>
-                              <div className="right">
-                                <span>{yiwanNum(shortVolume)}</span>
-                                <p>{sellPercent}% 空头爆仓</p>
-                              </div>
-                            </dt>
-                            <dd>
-                              <div className="chart">
-                                <div className="z" style={{width: `${buyPercent}%`}}></div>
-                                <div className="r" style={{width: `${sellPercent}%`}}></div>
-                              </div>
-                            </dd>
-                            <dd>
-                              {(this.state.timestamps || []).length && 
-                                <p className="time">
-                                  {new Date(this.state.timestamps[0] * 1000).format('MM/dd hh:mm')} ~{' '}
-                                  {new Date(
-                                    this.state.timestamps[this.state.timestamps.length - 1] * 1000
-                                  ).format('MM/dd hh:mm')}
-                                </p>
-                              }
-                            </dd>
-                          </dl>
-                          <div>
-                            <p className="info">
-                              近{timeTypeName}一共有<span className="buy">{yiwanNum(longNum)}</span>
-                              个多头爆仓单，<span className="sell">{yiwanNum(shortNum)}</span>
-                              个空头爆仓单
-                            </p>
-                            <p className="sumInfo">
-                              爆仓总金额 <span>{yiwanNum(total)}</span> USDT
-                            </p>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-
-                  {orders && 
-                    <div className="list">
-                      <Table
-                        size="small"
-                        bordered={true}
-                        dataSource={orders}
-                        columns={columns}
-                        scroll={{x: true, y: false}}
-                        pagination={{pageSize: 30}}
-                      ></Table>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
     return <div className="inTabContainer">
       <div className="cpContainer">
         <div className="summary">
@@ -1081,6 +891,7 @@ class Index extends React.Component {
                   {(this.state.symbolList || []).map((item, index) => {
                     return (
                       <li
+                        key={index}
                         className={this.state.symbol === item ? 'selected' : null}
                         onClick={() => {
                           this.changeSelectSymbol(item);
@@ -1092,7 +903,6 @@ class Index extends React.Component {
                   })}
                 </ul>
               </Col>
-              {/* <Col span={6}><p className="tips">数据统计自OKex、 火币</p></Col> */}
             </Row>
           </div>
           <div className="tableContent">
@@ -1151,34 +961,24 @@ class Index extends React.Component {
         </div>
 
         <div className="title">
-          <Row gutter={[12, 12]}>
+          {/* <Row gutter={[12, 12]}>
             <Col span={12}>
               <span style={{float: 'left'}}>
                 <MyPicker {...myPickerTimePorps}></MyPicker>
-                {/* &emsp;颗粒度:&emsp; */}
-                {/* <Select value={this.state.span} onChange={(e) => {
-                        this.exSpanChange(e)
-                      }} style={{width: 120}}>
-                        {(this.state.spanList || []).map((o) => {
-                          return <Option value={o.value}>{o.name}</Option>
-                        })}
-                      </Select> */}
               </span>
             </Col>
             <Col span={12} style={{textAlign: 'right'}}>
               <span style={{float: 'right'}}>
                 <MyPicker {...myPickerTimePorps1}></MyPicker>
-                {/* &emsp;时间周期:&emsp; */}
-                {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
-                        this.timeTypeChange(e);
-                      }}>
-                        {(this.state.timeList || []).map((item) => {
-                          return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                        })}
-                      </Radio.Group> */}
               </span>
             </Col>
-          </Row>
+          </Row> */}
+          <div className="left">
+            <MyPicker {...myPickerTimePorps}></MyPicker>
+          </div>
+          <div className="right">
+            <MyPicker {...myPickerTimePorps1}></MyPicker>
+          </div>
         </div>
         <div className="content">
           <div
@@ -1252,10 +1052,4 @@ class Index extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    loading: state.loading,
-    tool: state.tool
-  };
-}
-export default connect(mapStateToProps)(Index);
+export default Index;

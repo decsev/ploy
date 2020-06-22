@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-01-15 12:30:45
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-20 11:14:19
+ * @LastEditTime: 2020-06-22 17:12:34
  */
 import React, {PureComponent} from 'react';
 import router from 'umi/router';
@@ -28,7 +28,7 @@ class Index extends React.Component {
               router.replace({
                 pathname: '/data',
                 query: {
-                  tabIndex: 2
+                  tabIndex: 1
                 }
               })
             }}

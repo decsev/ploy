@@ -1,13 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon, Select, Radio} from 'antd';
-import { MyPicker } from 'components';
-import { config, deepGet, fNum, deepClone, wanNum, getObjFromArray } from 'utils';
+import {MyPicker} from 'components';
+import {config, deepGet, fNum, deepClone, wanNum, getObjFromArray} from 'utils';
 
-import './volume.scss'
+import styles from './volume.less'
 import * as echarts from 'echarts';
 
-const namespace = 'tool';
+const namespace = 'data';
 const okTimeList = [
   {value: '5m', label: '5分钟'},
   {value: '1h', label: '1小时'},
@@ -107,9 +106,22 @@ class volume extends React.Component {
         return new Date(item * 1000).format('MM/dd hh:mm');
       })
       let option = {
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
-        color: ['#617eca', '#cf805f', '#02b302'],
+        color: ['#617eca', '#02b302', '#37a2da'],
         legend: {
           data: legend,
           top: 20,
@@ -118,7 +130,10 @@ class volume extends React.Component {
             [legend[1]]: true,
             [legend[2]]: true
           },
-          show: true
+          show: true,
+          textStyle: {
+            color: '#c2c9d1'
+          }
         },
 
         tooltip: {
@@ -168,37 +183,11 @@ class volume extends React.Component {
           {
             type: 'slider',
             show: false,
-            xAxisIndex: [0, 1]
-          },
-          {
-            type: 'inside',
-            xAxisIndex: [0, 1]
-          }
-        ],
-        // toolbox: {
-        //   show: true,
-        //   feature: {
-        //     mark: {show: false},
-        //     dataZoom: {show: true, title: {zoom: '', back: ''}, yAxisIndex: 'none'},
-        //     dataView: {show: false, readOnly: false},
-        //     magicType: {show: false, type: ['line', 'bar', 'k']},
-        //     restore: {show: true, title: ' '},
-        //     saveAsImage: {show: false}
-        //   }
-        // },
-        dataZoom: [
-          {
-            type: 'slider',
-            show: false,
             xAxisIndex: [0, 1],
             bottom: 0,
             start: 0,
             end: 100
-          },
-          // {
-          //   type: 'inside',
-          //   xAxisIndex: [0, 1]
-          // }
+          }
         ],
         grid: [
           {
@@ -393,7 +382,7 @@ class volume extends React.Component {
     }
   }
   render() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 25);
     let h = parseInt(w * 0.7);
     const {symbol} = this.props;
     const {from, to} = this.state;
@@ -423,19 +412,18 @@ class volume extends React.Component {
         if (v[0] !== this.state.exchange) {
           this.setState(
             {
-              exchange: v[0],
-            }, ()=>{
+              exchange: v[0]
+            }, () => {
               this.exchangeChange(v[0])
             });
         }
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b>{symbol}<span>{this.state.exchange}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
+          <span onClick={props.onClick}>{symbol}<span className="text-blue">{this.state.exchange}<i className="icon iconfont icon-downSmall"></i></span>
           </span>
         );
-      },
+      }
     };
 
 
@@ -450,57 +438,31 @@ class volume extends React.Component {
         if (v[0] !== this.state.timeType) {
           this.setState(
             {
-              timeType: v[0],
-            }, ()=>{
+              timeType: v[0]
+            }, () => {
               this.timeTypeChange(v[0]);
             });
         }
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b><span>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
-          </span>
+          <span className="text-blue" onClick={props.onClick}>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-downSmall"></i></span>
         );
-      },
+      }
     };
 
     return (
-      <div className="volumeContainer">
-        <div className="title">
-          <Row gutter={[12, 12]}>
-            <Col span={12}>
-              <span className="info">
-                <MyPicker {...myPickerPorps}></MyPicker>
-              </span> 
-              
-              {/* <Select value={this.state.exchange} onChange={(e) => {
-                this.exchangeChange(e)
-              }} style={{width: 120}}>
-                {(this.state.exhcangeList || []).map((o) => {
-                  return <Option value={o.value}>{o.label}</Option>
-                })}
-              </Select> */}
-            </Col>
-            <Col span={12} style={{textAlign: 'right'}}>
-              {/* <span style={{marginRight: '10px'}}><MyDate key={from + to} {...myDateProps}></MyDate></span> */}
-              <span style={{float: 'right'}} className="time">
-                <MyPicker {...myPickerTimePorps}></MyPicker>
-
-                {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
-                  this.timeTypeChange(e);
-                }}>
-                  {(this.state.timeList || []).map((item) => {
-                    return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                  })}
-                </Radio.Group> */}
-              </span>
-            </Col>
-          </Row>
-          
+      <div className={styles.volumeContainer}>
+        <div className={styles.title}>
+          <div className={styles.left}>
+            <MyPicker {...myPickerPorps}></MyPicker>
+          </div>
+          <div className={styles.right}>
+            <MyPicker {...myPickerTimePorps}></MyPicker>
+          </div>
         </div>
-        <div className="content">
-          <div id={`echartId_${this.props.symbol}`} style={{ width: `${w}px`, height: `${h}px`, margin: '0 auto' }}></div>
+        <div className={styles.content}>
+          <div id={`echartId_${this.props.symbol}`} style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}></div>
         </div>
       </div>
     );

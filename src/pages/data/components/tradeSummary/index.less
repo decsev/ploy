@@ -1,10 +1,4 @@
-.down {
-    color: #f85e7b;
-}
-
-.up {
-    color: #10aee9;
-}
+:global{
 .summary{
     width: 100%;
     margin: 20px auto;
@@ -20,7 +14,7 @@
         padding: 0 0 16px;
         font-size: 16px;
         text-align: center;
-        border-bottom:1px solid #f2f5f6;
+        border-bottom:1px solid #313131;
     }
     table{
         border: 0px;
@@ -36,20 +30,18 @@
                 font-size: 16px;
                 font-weight: 400;
                 color: #979fb1;
-                border-bottom: 1px solid #f2f5f6;
             }
             td{
                 height: 40px;
                 font-size: 14px;
                 line-height: 1.5;
-                border-bottom: 1px solid #f2f5f6;
-                color: #35384a;
+                color: #868686;
                 position: relative;
                 &.green{
-                    color: #10aee9;
+                    color: #3a9555;
                 }
                 &.red{
-                    color: #f85e7b;
+                    color: #bf504f;
                 }
             }
         }
@@ -59,4 +51,5 @@
             }
         }
     }
+}
 }

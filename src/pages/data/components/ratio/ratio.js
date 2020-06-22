@@ -1,33 +1,31 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon, Select, Radio } from 'antd';
-import { MyPicker } from 'components';
-import { config, deepGet, fNum, deepClone, wanNum, getObjFromArray } from 'utils';
-import './ratio.scss'
+import {MyPicker} from 'components';
+import {config, deepGet, fNum, deepClone, wanNum, getObjFromArray} from 'utils';
+import styles from './ratio.less'
 import * as echarts from 'echarts';
 
-const namespace = 'tool';
 const okTimeList = [
-  { value: '5m', label: '5分钟' },
-  { value: '1h', label: '1小时' },
-  { value: '1d', label: '1天' }
+  {value: '5m', label: '5分钟'},
+  {value: '1h', label: '1小时'},
+  {value: '1d', label: '1天'}
 ]
 // 1h, 4h, 12h, 1day
 const huobiTimeList = [
-  { value: '5m', label: '5分钟' },
-  { value: '15m', label: '15分钟' },
-  { value: '30m', label: '30分钟' },
-  { value: '60m', label: '1小时' },
-  { value: '4h', label: '4小时' },
-  { value: '1d', label: '1天' }
+  {value: '5m', label: '5分钟'},
+  {value: '15m', label: '15分钟'},
+  {value: '30m', label: '30分钟'},
+  {value: '60m', label: '1小时'},
+  {value: '4h', label: '4小时'},
+  {value: '1d', label: '1天'}
 ]
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       exhcangeList: [
-        { label: 'okex', value: 'okex' },
-        { label: 'huobi', value: 'huobi' }
+        {label: 'okex', value: 'okex'},
+        {label: 'huobi', value: 'huobi'}
       ],
       timeType: okTimeList[2].value,
       from: null,
@@ -67,8 +65,8 @@ class Index extends React.Component {
     })
   }
   doFetch() {
-    const { symbol } = this.props;
-    const { timeType, from, to, exchange } = this.state;
+    const {symbol, namespace} = this.props;
+    const {timeType, from, to, exchange} = this.state;
     // 获取数据
     this.dispatch({
       type: `${namespace}/longShortPositionRatio`,
@@ -88,8 +86,8 @@ class Index extends React.Component {
     })
   }
   doDraw() {
-    const { ratios, timestamps, prices, timeType } = this.state;
-    const { symbol } = this.props;
+    const {ratios, timestamps, prices, timeType} = this.state;
+    const {symbol} = this.props;
     if ((timestamps || []).length > 0) {
       this.myChart.hideLoading();
       let legend = ['合约多空人数比', '现货价格'];
@@ -97,7 +95,20 @@ class Index extends React.Component {
         return new Date(item * 1000).format('MM/dd hh:mm');
       })
       let option = {
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
         color: ['#617eca', '#02b302', '#37a2da'],
         legend: {
@@ -107,7 +118,10 @@ class Index extends React.Component {
             [legend[0]]: true,
             [legend[1]]: true
           },
-          show: true
+          show: true,
+          textStyle: {
+            color: '#c2c9d1'
+          }
         },
 
         tooltip: {
@@ -130,7 +144,7 @@ class Index extends React.Component {
           // extraCssText: 'width: 170px'
         },
         axisPointer: {
-          link: { xAxisIndex: 'all' },
+          link: {xAxisIndex: 'all'},
           label: {
             backgroundColor: '#777'
           }
@@ -138,36 +152,14 @@ class Index extends React.Component {
         toolbox: {
           show: false,
           feature: {
-            mark: { show: false },
-            dataZoom: { show: true },
-            dataView: { show: true, readOnly: false },
-            magicType: { show: false, type: ['line', 'bar', 'k'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
+            mark: {show: false},
+            dataZoom: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: false, type: ['line', 'bar', 'k']},
+            restore: {show: true},
+            saveAsImage: {show: true}
           }
         },
-        dataZoom: [
-          {
-            type: 'slider',
-            show: false,
-            xAxisIndex: [0]
-          },
-          {
-            type: 'inside',
-            xAxisIndex: [0]
-          }
-        ],
-        // toolbox: {
-        //   show: true,
-        //   feature: {
-        //     mark: {show: false},
-        //     dataZoom: {show: true, title: {zoom: '', back: ''}, yAxisIndex: 'none'},
-        //     dataView: {show: false, readOnly: false},
-        //     magicType: {show: false, type: ['line', 'bar', 'k']},
-        //     restore: {show: true, title: ' '},
-        //     saveAsImage: {show: false}
-        //   }
-        // },
         dataZoom: [
           {
             type: 'slider',
@@ -176,28 +168,24 @@ class Index extends React.Component {
             bottom: 0,
             start: 0,
             end: 100
-          },
-          // {
-          //   type: 'inside',  //滚轮缩放
-          //   xAxisIndex: [0]
-          // }
+          }
         ],
         grid: {
           left: 50,
           right: 50,
-          bottom: 20,
+          bottom: 40,
           top: 50
         },
         xAxis: [
           {
             type: 'category',
             boundaryGap: true,
-            axisTick: { show: false },
-            splitLine: { show: false },
-            axisLine: { show: false },
+            axisTick: {show: false},
+            splitLine: {show: false},
+            axisLine: {show: false},
             data: xAxis,
             axisLabel: {
-              formatter: function (data) {
+              formatter: function(data) {
                 if (timeType === '1d' || timeType === '1day') {
                   return new Date(data).format('MM-dd');
                 }
@@ -215,7 +203,7 @@ class Index extends React.Component {
             scale: true,
             boundaryGap: ['20%', '20%'],
             position: 'left',
-            axisTick: { show: false },
+            axisTick: {show: false},
             splitLine: {
               show: false,
               lineStyle: {
@@ -230,7 +218,7 @@ class Index extends React.Component {
               }
             },
             axisLabel: {
-              formatter: function (data) {
+              formatter: function(data) {
                 return wanNum(data, 2);
               }
             },
@@ -244,7 +232,7 @@ class Index extends React.Component {
             scale: true,
             boundaryGap: ['20%', '20%'],
             position: 'right',
-            axisTick: { show: false },
+            axisTick: {show: false},
             splitLine: {
               show: false,
               lineStyle: {
@@ -252,7 +240,7 @@ class Index extends React.Component {
               }
             },
             axisLabel: {
-              formatter: function (data) {
+              formatter: function(data) {
                 return wanNum(data, 2);
               }
             },
@@ -302,10 +290,10 @@ class Index extends React.Component {
     }
   }
   render() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 25);
     let h = parseInt(w * 0.7);
-    const { symbol } = this.props;
-    const { from, to } = this.state;
+    const {symbol} = this.props;
+    const {from, to} = this.state;
 
     const myPickerPorps = {
       data: this.state.exhcangeList,
@@ -317,7 +305,7 @@ class Index extends React.Component {
         if (v[0] !== this.state.exchange) {
           this.setState(
             {
-              exchange: v[0],
+              exchange: v[0]
             }, () => {
               this.exchangeChange(v[0])
             });
@@ -326,10 +314,10 @@ class Index extends React.Component {
       CustomChildren: props => {
         return (
           <span onClick={props.onClick}>
-            <b>{symbol} {this.state.exchange === 'huobi' && <span>大户</span>}<span>{this.state.exchange}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
+            {symbol} {this.state.exchange === 'huobi' && <span>大户</span>}<span className="text-blue">{this.state.exchange}<i className="icon iconfont icon-downSmall"></i></span>
           </span>
         );
-      },
+      }
     };
 
     const myPickerTimePorps = {
@@ -343,7 +331,7 @@ class Index extends React.Component {
         if (v[0] !== this.state.timeType) {
           this.setState(
             {
-              timeType: v[0],
+              timeType: v[0]
             }, () => {
               this.timeTypeChange(v[0]);
             });
@@ -351,47 +339,23 @@ class Index extends React.Component {
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b><span>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
-          </span>
+          <span className="text-blue" onClick={props.onClick}>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-downSmall"></i></span>
         );
-      },
+      }
     };
 
     return (
-      <div className="volumeContainer" id="volumeContainer">
-        <div className="title">
-          <Row gutter={[12, 12]}>
-            <Col span={12}>
-              <span className="info"><MyPicker {...myPickerPorps}></MyPicker></span>
-              {/* <Select size="small" value={this.state.exchange} onChange={(e) => {
-                this.exchangeChange(e)
-              }} style={{width: 60}}>
-                {(this.state.exhcangeList || []).map((o) => {
-                  return <Option value={o.value}>{o.label}</Option>
-                })}
-              </Select> */}
-
-            </Col>
-            <Col span={12} style={{ textAlign: 'right' }}>
-              <span style={{ float: 'right' }} className="time">
-
-                <MyPicker {...myPickerTimePorps}></MyPicker>
-
-                {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
-                  this.timeTypeChange(e);
-                }}>
-                  {(this.state.timeList || []).map((item) => {
-                    return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                  })}
-                </Radio.Group> */}
-              </span>
-            </Col>
-          </Row>
-
+      <div className={styles.volumeContainer} id="volumeContainer">
+        <div className={styles.title}>
+          <div className={styles.left}>
+            <MyPicker {...myPickerPorps}></MyPicker>
+          </div>
+          <div className={styles.right}>
+            <MyPicker {...myPickerTimePorps}></MyPicker>
+          </div>
         </div>
-        <div className="content">
-          <div id={`echartId_${this.props.symbol}`} style={{ width: `${w}px`, height: `${h}px`, margin: '0 auto' }}></div>
+        <div className={styles.content}>
+          <div id={`echartId_${this.props.symbol}`} style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}></div>
         </div>
       </div>
     );

@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon, Select, Radio } from 'antd';
-import { MyPicker } from 'components';
-import { config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum } from 'utils';
-import './index.scss'
+import {Row, Col, Icon, Select, Radio} from 'antd';
+import {MyPicker} from 'components';
+import {config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum} from 'utils';
+import './index.less'
 import * as echarts from 'echarts';
 
-const namespace = 'tool';
+const namespace = 'data';
 // [1h,3h,8h,24h,48h,7d]
 const timeList = [
   {value: '1h', label: '1小时'},
@@ -160,7 +160,20 @@ class volume extends React.Component {
         return new Date(item * 1000).format('MM/dd hh:mm');
       })
       let option = {
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
         color: ['#ffc107', '#14b143', '#2196f3', '#2196f3'],
         // color: ['green', 'red', '#295b51'],
@@ -173,7 +186,10 @@ class volume extends React.Component {
             [legend[2]]: true
             //[legend[3]]: true
           },
-          show: true
+          show: true,
+          textStyle: {
+            color: '#c2c9d1'
+          }
         },
 
         tooltip: {
@@ -231,15 +247,11 @@ class volume extends React.Component {
             start: 0,
             end: 100
           }
-          // {
-          //   type: 'inside',
-          //   xAxisIndex: [0]
-          // }
         ],
         grid: {
           left: 50,
           right: 50,
-          bottom: 20,
+          bottom: 40,
           top: 50
         },
         xAxis: [
@@ -251,10 +263,6 @@ class volume extends React.Component {
             axisLine: {show: false},
             data: xAxis,
             axisLabel: {
-              // interval: 50,
-              // formatter: function(data) {
-              //   return new Date(data).format('MM/dd hh:mm');
-              // }
             },
             axisPointer: {
               z: 100
@@ -290,29 +298,6 @@ class volume extends React.Component {
               show: false
             }
           },
-          // {
-          //   type: 'value',
-          //   name: '价差',
-          //   scale: true,
-          //   boundaryGap: ['50%', '50%'],
-          //   position: 'right',
-          //   offset: 60, 
-          //   axisTick: {show: false},
-          //   splitLine: {
-          //     show: false,
-          //     lineStyle: {
-          //       type: 'dashed'
-          //     }
-          //   },
-          //   axisLabel: {
-          //     formatter: function(data) {
-          //       return yiwanNum(data, 2);
-          //     }
-          //   },
-          //   axisLine: {
-          //     show: false
-          //   }
-          // },
           {
             type: 'value',
             // name: '溢价率(%)',
@@ -339,9 +324,6 @@ class volume extends React.Component {
             type: 'line',
             data: price,
             yAxisIndex: 0,
-            // areaStyle: {
-            //   color: '#cce9ff'
-            // },
             lineStyle: {
               width: 2
             },
@@ -354,9 +336,6 @@ class volume extends React.Component {
             type: 'line',
             data: marketPrice,
             yAxisIndex: 0,
-            // areaStyle: {
-            //   color: '#cce9ff'
-            // },
             lineStyle: {
               width: 2
             },
@@ -365,17 +344,6 @@ class volume extends React.Component {
             barGap: '-100%'
 
           },
-          // {
-          //   name: legend[2],
-          //   type: 'line',
-          //   data: gap,
-          //   yAxisIndex: 1,
-          //   lineStyle: {
-          //     width: 2
-          //   },
-          //   symbol: 'none',
-          //   smooth: true
-          // },
           {
             name: legend[2],
             type: 'line',
@@ -403,7 +371,7 @@ class volume extends React.Component {
   }
   render() {
     const {symbol} = this.props;
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
 
     const myPickerTimePorps = {
@@ -417,7 +385,7 @@ class volume extends React.Component {
         if (v[0] !== this.state.timeType) {
           this.setState(
             {
-              timeType: v[0],
+              timeType: v[0]
             }, () => {
               this.timeTypeChange(v[0]);
             });
@@ -425,11 +393,11 @@ class volume extends React.Component {
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b><span>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
+          <span onClick={props.onClick} className="text-blue">
+            {getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-downSmall"></i>
           </span>
         );
-      },
+      }
     };
 
     return (
@@ -440,9 +408,9 @@ class volume extends React.Component {
               <span className="info">{symbol} OTC溢价</span>
             </Col>
             <Col span={12} style={{textAlign: 'right'}}>
-              <span style={{float: 'right'}}>
+              <span style={{float: 'right'}} className="time">
 
-              <MyPicker {...myPickerTimePorps}></MyPicker>
+                <MyPicker {...myPickerTimePorps}></MyPicker>
                 {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
                   this.timeTypeChange(e.target.value);
                 }}>
@@ -455,7 +423,7 @@ class volume extends React.Component {
           </Row>
         </div>
         <div className="content">
-          <div id={`echartId_${this.props.symbol}`} style={{ width: `${w}px`, height: `${h}px`, margin: '0 auto' }}></div>
+          <div id={`echartId_${this.props.symbol}`} style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}></div>
         </div>
       </div>
     );

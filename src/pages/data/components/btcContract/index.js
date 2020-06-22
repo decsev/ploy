@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-01-15 12:30:45
  * @LastEditors: lianggua
- * @LastEditTime: 2020-06-20 15:50:32
+ * @LastEditTime: 2020-06-22 17:15:29
  */
 import React, {PureComponent} from 'react';
 import router from 'umi/router';
@@ -23,7 +23,7 @@ class Index extends React.Component {
         <div className="title">
           <span>BTC合约</span>
           <span>数据:BitMEX,OKEx,Huobi</span>
-          <span
+          {/* <span
             className="icon iconfont icon-more"
             onClick={() => {
               router.replace({
@@ -33,19 +33,19 @@ class Index extends React.Component {
                 }
               })
             }}
-          ></span>
+          ></span> */}
         </div>
         <dl className="content">
           <dd>
             <h4>
               <span>持仓量($)</span>
               <span
-                className="icon iconfont icon-iccaretright"
+                className="icon iconfont icon-more"
                 onClick={() => {
                   router.replace({
                     pathname: '/data',
                     query: {
-                      tabIndex: 3
+                      tabIndex: 2
                     }
                   })
                 }}
@@ -66,13 +66,13 @@ class Index extends React.Component {
             <h4>
               <span>24H爆仓量($)</span>
               <span
-                className="icon iconfont icon-iccaretright"
+                className="icon iconfont icon-more"
                 onClick={() => {
                   // router.push('/explosive');
                   router.replace({
-                    pathname: '/home',
+                    pathname: '/data',
                     query: {
-                      tabIndex: 4
+                      tabIndex: 3
                     }
                   })
                 }}

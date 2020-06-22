@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import router from 'umi/router';
-import { Row, Col, Icon, Select, Radio } from 'antd';
-import { MyPicker } from 'components';
-import { config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum } from 'utils';
-import './profitabilityChart.scss'
+import {Row, Col, Icon, Select, Radio} from 'antd';
+import {MyPicker} from 'components';
+import {config, deepGet, fNum, deepClone, wanNum, getObjFromArray, yiwanNum} from 'utils';
+import './profitabilityChart.less'
 import * as echarts from 'echarts';
 
-const namespace = 'tool';
+const namespace = 'data';
 // 3M,6M,1y,2y
 const timeList = [
   {value: '3m', label: '3月'},
@@ -80,12 +80,26 @@ class volume extends React.Component {
           text: `${this.state.symbol} 1 THash/s 每天挖矿收益`,
           left: 'center',
           align: 'right',
-          top: '0px',
+          top: '5px',
           textStyle: {
-            fontSize: 14
+            fontSize: 14,
+            color: '#b2b8c0'
           }
         },
-        backgroundColor: '#fff',
+        textStyle: {
+          color: '#5b5f6a'
+        },
+        backgroundColor: '#212425',
+        label: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
+        labelLine: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        },
         animation: false,
         color: ['#617eca', '#02b302', '#37a2da'],
         legend: {
@@ -95,7 +109,10 @@ class volume extends React.Component {
             [legend[0]]: true,
             [legend[1]]: true
           },
-          show: true
+          show: true,
+          textStyle: {
+            color: '#c2c9d1'
+          }
         },
 
         tooltip: {
@@ -159,7 +176,7 @@ class volume extends React.Component {
         grid: {
           left: 50,
           right: 50,
-          bottom: 20,
+          bottom: 40,
           top: 50
         },
         xAxis: [
@@ -282,7 +299,7 @@ class volume extends React.Component {
     
   }
   render() {
-    let w = parseInt(document.body.clientWidth * 1);
+    let w = parseInt(document.body.clientWidth * 1 - 30);
     let h = parseInt(w * 0.7);
 
     const myPickerTimePorps = {
@@ -296,7 +313,7 @@ class volume extends React.Component {
         if (v[0] !== this.state.timeType) {
           this.setState(
             {
-              timeType: v[0],
+              timeType: v[0]
             }, () => {
               this.timeTypeChange(v[0]);
             });
@@ -304,11 +321,11 @@ class volume extends React.Component {
       },
       CustomChildren: props => {
         return (
-          <span onClick={props.onClick}>
-            <b><span>{getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-xiasanjiaoxing"></i></span></b>
+          <span onClick={props.onClick} className="text-blue">
+            {getObjFromArray(this.state.timeList, 'value', this.state.timeType).label}<i className="icon iconfont icon-downSmall"></i>
           </span>
         );
-      },
+      }
     };
 
     return (
@@ -319,23 +336,15 @@ class volume extends React.Component {
               <span className="info">{this.state.symbol}挖矿收益</span> 
             </Col>
             <Col span={12} style={{textAlign: 'right'}}>
-              <span style={{float: 'right'}}>
+              <span style={{float: 'right'}} className="time">
 
-              <MyPicker {...myPickerTimePorps}></MyPicker>
-
-                {/* <Radio.Group value={this.state.timeType} onChange={(e) => {
-                  this.timeTypeChange(e);
-                }}>
-                  {(this.state.timeList || []).map((item) => {
-                    return <Radio.Button value={item.value}>{item.name}</Radio.Button>
-                  })}
-                </Radio.Group> */}
+                <MyPicker {...myPickerTimePorps}></MyPicker>
               </span>
             </Col>
           </Row>
         </div>
         <div className="content">
-          <div id="echartId2" style={{ width: `${w}px`, height: `${h}px`, margin: '0 auto' }}></div>
+          <div id="echartId2" style={{width: `${w}px`, height: `${h}px`, margin: '0 auto'}}></div>
         </div>
       </div>
     );
